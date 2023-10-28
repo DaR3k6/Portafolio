@@ -1,13 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const conexion = require("./models/Conexion");
+require("dotenv/config");
 
 //CONECTO LA BASE DE DATOS
 conexion();
 
 //CREO EL SERVIDOR NODE
 const app = express();
-const puerto = 3900;
+const puerto = process.env.PUERTO;
 
 //CONEXION MIDDLEAWRE
 app.use(cors());
@@ -21,7 +22,6 @@ const rutaPersonal = require("./router/personal");
 
 app.use("/api/", rutaPersonal);
 
-
-app.use(puerto, () => {
+app.listen(puerto, () => {
   console.log(`El servidor está conectado en: http://localhost:${puerto}`);
 });

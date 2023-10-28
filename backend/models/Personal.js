@@ -30,6 +30,10 @@ const PersonalSchema = Schema(
       type: String,
       require: true,
     },
+    genero: {
+      type: String,
+      require: true,
+    },
     password: {
       type: String,
       required: true,

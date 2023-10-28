@@ -4,6 +4,9 @@ const router = express.Router();
 const personalController = require("../controller/personal");
 
 //REGISTRO EL USUARIO
-router.post("/personal/registrado", personalController.personalRegistrar);
+router.post("/personal/registrando", personalController.personalRegistrar);
+
+//LOGEO EL USUARIO
+router.post("/personal/login", personalController.personalLogin);
 
 module.exports = router;
