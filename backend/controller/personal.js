@@ -117,4 +117,85 @@ const personalLogin = async (req, res) => {
   }
 };
 
-module.exports = { personalRegistrar, personalLogin };
+//CONTROLADOR ACTUALIZAR LOS DATOS PEROSONAL
+const personalActualizar = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let data = req.body;
+
+    //ENCRYPTO LA CONTRASEÑA SI QUIERE CAMBIAR EL USUARIO
+    if (data.password) {
+      const hashedPassword = await bycrpt.hash(data.password, 10);
+      data.password = hashedPassword;
+    }
+
+    //ACUTUALIZO LA CONSULTA
+    const consulta = await Personal.findOneAndUpdate({ _id: id }, data).exec();
+
+    if (!consulta) {
+      return res.status(404).json({
+        mensaje: "No se encontró el registro con el ID proporcionado",
+        status: false,
+      });
+    }
+
+    return res.status(200).json({
+      resultado: "Actualizar exitoso",
+      status: true,
+      datos: consulta.toJSON(),
+    });
+  } catch (error) {
+    return res.status(400).json({
+      mensaje: "Error en la consulta",
+      error: error.message,
+      status: false,
+    });
+  }
+};
+
+//CONTROLADOR DE ELIMINAR UNA USUARIO
+const eliminarUsuario = async (req, res) => {
+  try {
+    let id = req.params.id;
+
+    //VEREFICO SI EXISTE EL ID
+    if (!id) {
+      return res.status(400).json({
+        mensaje: "ID de usuario no válido",
+        status: false,
+      });
+    }
+
+    //HACE LA CONSULTA SI SE PUEDE ELIMINAR
+    const consulta = await Personal.findOneAndDelete(id).exec();
+
+    if (!consulta) {
+      return res.status(404).json({
+        mensaje: "No se encontró el usuario con el ID proporcionado",
+        status: false,
+      });
+    }
+
+    return res.status(200).json({
+      resultado: "Elimino exitoso",
+      status: true,
+      datos: consulta.toJSON(),
+    });
+  } catch (error) {
+    return res.status(400).json({
+      mensaje: "Error en la consulta",
+      error: error.message,
+      status: false,
+    });
+  }
+};
+
+//CONTROLADOR DE OBTENER LA INFORMACION DEL USUARIO
+const obtenerInformacionPersonal = async (req, res) => {};
+
+module.exports = {
+  personalRegistrar,
+  personalLogin,
+  personalActualizar,
+  eliminarUsuario,
+};
