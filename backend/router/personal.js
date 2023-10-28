@@ -24,4 +24,14 @@ router.delete(
   personalController.eliminarUsuario
 );
 
+//OBTENGO LA INFORMACION PERSONAL
+router.get(
+  "/personal/informacion/:id",
+  auth,
+  personalController.obtenerInformacionPersonal
+);
+
+//LISTA TODOS LOS REGISTROS PERSONALES
+router.get("/personal", auth, personalController.registrarRegistrosPersonales);
+
 module.exports = router;

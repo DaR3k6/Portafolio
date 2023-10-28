@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 //CONTROLADOR DE REGISTRAR USUARIO
 const personalRegistrar = async (req, res) => {
   try {
-    let datos = req.body;
+    const datos = req.body;
 
     //CREA EL USUARIO DEL OBJETO
     const personalGuardar = new Personal(datos);
@@ -54,7 +54,7 @@ const personalRegistrar = async (req, res) => {
 //CONTROLADOR DE LOGIN
 const personalLogin = async (req, res) => {
   try {
-    let datos = req.body;
+    const datos = req.body;
 
     //VALIDAR LA PRESENCIA DE EMAIL Y CONTRASEÑA
     if (!datos.email || !datos.password) {
@@ -120,8 +120,8 @@ const personalLogin = async (req, res) => {
 //CONTROLADOR ACTUALIZAR LOS DATOS PEROSONAL
 const personalActualizar = async (req, res) => {
   try {
-    let id = req.params.id;
-    let data = req.body;
+    const id = req.params.id;
+    const data = req.body;
 
     //ENCRYPTO LA CONTRASEÑA SI QUIERE CAMBIAR EL USUARIO
     if (data.password) {
@@ -156,7 +156,7 @@ const personalActualizar = async (req, res) => {
 //CONTROLADOR DE ELIMINAR UNA USUARIO
 const eliminarUsuario = async (req, res) => {
   try {
-    let id = req.params.id;
+    const id = req.params.id;
 
     //VEREFICO SI EXISTE EL ID
     if (!id) {
@@ -191,11 +191,74 @@ const eliminarUsuario = async (req, res) => {
 };
 
 //CONTROLADOR DE OBTENER LA INFORMACION DEL USUARIO
-const obtenerInformacionPersonal = async (req, res) => {};
+const obtenerInformacionPersonal = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    //VEREFICO SI EXISTE EL ID
+    if (!id) {
+      return res.status(400).json({
+        mensaje: "ID de usuario no válido",
+        status: false,
+      });
+    }
+
+    //HACE LA CONSULTA OBTENER LA INFROMACION PERSONAL
+    const consulta = await Personal.findById(id).exec();
+
+    if (!consulta) {
+      return res.status(404).json({
+        mensaje: "No se encontró el usuario con el ID proporcionado",
+        status: false,
+      });
+    }
+
+    return res.status(200).json({
+      resultado: "Obtención exitosa",
+      status: true,
+      datos: consulta.toJSON(),
+    });
+  } catch (error) {
+    return res.status(400).json({
+      mensaje: "Error en la consulta",
+      error: error.message,
+      status: false,
+    });
+  }
+};
+
+//REGISTRAR TODOS LOS REGISTROS PERSONALES
+const registrarRegistrosPersonales = async (req, res) => {
+  try {
+    //CONSULTA TRAE TODA SU INFROAMCION PERSONAL
+    const consulta = await Personal.find().exec();
+
+    if (consulta.length === 0) {
+      return res.status(404).json({
+        mensaje: "No se encontraron registros personales",
+        status: false,
+      });
+    }
+
+    return res.status(200).json({
+      resultado: "Obtención exitosa",
+      status: true,
+      datos: consulta.map(personal => personal.toJSON()),
+    });
+  } catch (error) {
+    return res.status(400).json({
+      mensaje: "Error en la consulta",
+      error: error.message,
+      status: false,
+    });
+  }
+};
 
 module.exports = {
   personalRegistrar,
   personalLogin,
   personalActualizar,
   eliminarUsuario,
+  obtenerInformacionPersonal,
+  registrarRegistrosPersonales,
 };
