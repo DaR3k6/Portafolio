@@ -19,8 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //RUTAS MVC
 const rutaPersonal = require("./router/personal");
+const rutaEstudio = require("./router/estudios");
 
 app.use("/api/", rutaPersonal);
+app.use("/api/", rutaEstudio);
 
 app.listen(puerto, () => {
   console.log(`El servidor está conectado en: http://localhost:${puerto}`);

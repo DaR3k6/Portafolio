@@ -129,7 +129,7 @@ const personalActualizar = async (req, res) => {
       data.password = hashedPassword;
     }
 
-    //ACUTUALIZO LA CONSULTA
+    //ACTUALIZO LA CONSULTA
     const consulta = await Personal.findOneAndUpdate({ _id: id }, data).exec();
 
     if (!consulta) {
