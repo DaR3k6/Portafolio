@@ -12,7 +12,7 @@ const Cuerpo = () => {
             <div className="profile">
               <img src={img} alt="" className="img-fluid rounded-circle" />
               <h1 className="text-light">
-                <a href="index.html">Alex Smith</a>
+                <a href="index.html">Kevin Villegas</a>
               </h1>
               <div className="social-links mt-3 text-center">
                 <a href="#" className="twitter">
@@ -37,33 +37,33 @@ const Cuerpo = () => {
               <ul>
                 <li>
                   <a href="#hero" className="nav-link scrollto active">
-                    <i className="bx bx-home"></i> <span>Home</span>
+                    <i className="bx bx-home"></i> <span>Inicio</span>
                   </a>
                 </li>
                 <li>
                   <a href="#about" className="nav-link scrollto">
-                    <i className="bx bx-user"></i> <span>About</span>
+                    <i className="bx bx-user"></i> <span>Sobre Mi</span>
                   </a>
                 </li>
                 <li>
                   <a href="#resume" className="nav-link scrollto">
-                    <i className="bx bx-file-blank"></i> <span>Resume</span>
+                    <i className="bx bx-file-blank"></i> <span>Resumen</span>
                   </a>
                 </li>
                 <li>
                   <a href="#portfolio" className="nav-link scrollto">
                     <i className="bx bx-book-content"></i>{" "}
-                    <span>Portfolio</span>
+                    <span>Portafolio</span>
                   </a>
                 </li>
                 <li>
                   <a href="#services" className="nav-link scrollto">
-                    <i className="bx bx-server"></i> <span>Services</span>
+                    <i className="bx bx-server"></i> <span>Servicio</span>
                   </a>
                 </li>
                 <li>
                   <a href="#contact" className="nav-link scrollto">
-                    <i className="bx bx-envelope"></i> <span>Contact</span>
+                    <i className="bx bx-envelope"></i> <span>Contacto</span>
                   </a>
                 </li>
               </ul>
@@ -76,9 +76,9 @@ const Cuerpo = () => {
           className="d-flex flex-column justify-content-center align-items-center"
         >
           <div className="hero-container" data-aos="fade-in">
-            <h1>Alex Smith</h1>
+            <h1>Kevin Villegas</h1>
             <p>
-              I'm
+              Soy Experto en Apis y MER.
               <span
                 className="typed"
                 data-typed-items="Designer, Developer, Freelancer, Photographer"
