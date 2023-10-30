@@ -81,12 +81,13 @@ const Login = () => {
                       </label>
                     </div>
 
-                    <button
-                      type="submit"
+                    <a
+                      type="button"
+                      href="/Inicio"
                       className="btn btn-primary btn-block mb-4"
                     >
                       Sign up
-                    </button>
+                    </a>
 
                     <div className="text-center">
                       <p>or sign up with:</p>
