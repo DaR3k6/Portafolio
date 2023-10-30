@@ -1,10 +1,9 @@
-import { useState } from "react";
-import "./App.css";
-import Cuerpo from "./components/Cuerpo";
+import Routing from "./router/Routing";
+
 function App() {
   return (
     <>
-      <Cuerpo />
+      <Routing />
     </>
   );
 }
