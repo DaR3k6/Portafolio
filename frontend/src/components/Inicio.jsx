@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import img from "../assets/img/profile.jpg";
 
-const Cuerpo = () => {
+const Inicio = () => {
   return (
     <>
       <body>
@@ -1123,4 +1123,4 @@ const Cuerpo = () => {
   );
 };
 
-export default Cuerpo;
+export default Inicio;
