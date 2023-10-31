@@ -15,10 +15,7 @@ const personalRegistrar = async (req, res) => {
       $or: [
         {
           apodo: personalGuardar.apodo.toLowerCase(),
-          nombre: personalGuardar.nombre.toLowerCase(),
-          apellido: personalGuardar.apellido.toLowerCase(),
           email: personalGuardar.email.toLowerCase(),
-          genero: personalGuardar.genero.toLowerCase(),
         },
       ],
     }).exec();
@@ -43,7 +40,7 @@ const personalRegistrar = async (req, res) => {
       });
     }
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -59,6 +56,7 @@ const personalLogin = async (req, res) => {
     //VALIDAR LA PRESENCIA DE EMAIL Y CONTRASEÑA
     if (!datos.email || !datos.password) {
       return res.status(400).json({
+        status: false,
         resultado: "error",
         mensaje: "Faltan datos por enviar del formulario",
       });
@@ -69,6 +67,7 @@ const personalLogin = async (req, res) => {
 
     if (!consulta) {
       return res.status(400).json({
+        status: false,
         resultado: "error",
         mensaje: "Usuario no existe en la BD",
       });
@@ -81,6 +80,7 @@ const personalLogin = async (req, res) => {
 
       if (!pwdCoincide) {
         return res.status(400).json({
+          status: false,
           resultado: "error",
           mensaje: "Contraseña incorrecta",
         });
@@ -99,7 +99,8 @@ const personalLogin = async (req, res) => {
       );
 
       return res.status(200).json({
-        resultado: "success",
+        status: true,
+        resultado: "Exitoso",
         mensaje: "Inicio de sesión exitoso",
         usuario: {
           id: consulta._id,
@@ -243,7 +244,7 @@ const registrarRegistrosPersonales = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.map(personal => personal.toJSON()),
+      datos: consulta.map((personal) => personal.toJSON()),
     });
   } catch (error) {
     return res.status(400).json({

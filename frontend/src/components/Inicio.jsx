@@ -10,7 +10,7 @@ const Inicio = () => {
         <header id="header">
           <div className="d-flex flex-column">
             <div className="profile">
-              <img src={img} alt="" className="img-fluid rounded-circle" />
+              <img src={img} alt="" className="img-fluid rounded-circle w-90" />
               <h1 className="text-light">
                 <a href="index.html">Kevin Villegas</a>
               </h1>
@@ -66,6 +66,12 @@ const Inicio = () => {
                     <i className="bx bx-envelope"></i> <span>Contacto</span>
                   </a>
                 </li>
+                <li>
+                  <a href="/" className="nav-link scrollto">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Cerrar Sesion</span>
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -91,7 +97,7 @@ const Inicio = () => {
           <section id="about" className="about">
             <div className="container">
               <div className="section-title">
-                <h2>About</h2>
+                <h2>Sobre</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -104,7 +110,7 @@ const Inicio = () => {
               <div className="row">
                 <div className="col-lg-4" data-aos="fade-right">
                   <img
-                    src="assets/img/profile.jpg"
+                    src="../src/assets/img/profile.jpg"
                     className="img-fluid"
                     alt=""
                   />
@@ -124,19 +130,20 @@ const Inicio = () => {
                       <ul>
                         <li>
                           <i className="bi bi-chevron-right"></i>
-                          <strong>Birthday:</strong> <span>1 May 1995</span>
+                          <strong>Cumpleaños:</strong> <span>1 May 1995</span>
                         </li>
                         <li>
                           <i className="bi bi-chevron-right"></i>
-                          <strong>Website:</strong> <span>www.example.com</span>
+                          <strong>Pagina Web:</strong>{" "}
+                          <span>www.example.com</span>
                         </li>
                         <li>
                           <i className="bi bi-chevron-right"></i>
-                          <strong>Phone:</strong> <span>+123 456 7890</span>
+                          <strong>Telefono:</strong> <span>+123 456 7890</span>
                         </li>
                         <li>
                           <i className="bi bi-chevron-right"></i>
-                          <strong>City:</strong> <span>New York, USA</span>
+                          <strong>Ciudad:</strong> <span>New York, USA</span>
                         </li>
                       </ul>
                     </div>
@@ -144,16 +151,16 @@ const Inicio = () => {
                       <ul>
                         <li>
                           <i className="bi bi-chevron-right"></i>{" "}
-                          <strong>Age:</strong>
+                          <strong>Edad:</strong>
                           <span>30</span>
                         </li>
                         <li>
                           <i className="bi bi-chevron-right"></i>
-                          <strong>Degree:</strong> <span>Master</span>
+                          <strong>Grado:</strong> <span>Master</span>
                         </li>
                         <li>
                           <i className="bi bi-chevron-right"></i>
-                          <strong>PhEmailone:</strong>
+                          <strong>Correo:</strong>
                           <span>email@example.com</span>
                         </li>
                         <li>
@@ -179,7 +186,7 @@ const Inicio = () => {
           <section id="facts" className="facts">
             <div className="container">
               <div className="section-title">
-                <h2>Facts</h2>
+                <h2>Hechos Realizado</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -203,7 +210,7 @@ const Inicio = () => {
                       className="purecounter"
                     ></span>
                     <p>
-                      <strong>Happy Clients</strong> consequuntur quae
+                      <strong>Clientes Felices</strong> consequuntur quae
                     </p>
                   </div>
                 </div>
@@ -222,7 +229,7 @@ const Inicio = () => {
                       className="purecounter"
                     ></span>
                     <p>
-                      <strong>Projects</strong> adipisci atque cum quia aut
+                      <strong>Projectos</strong> adipisci atque cum quia aut
                     </p>
                   </div>
                 </div>
@@ -241,7 +248,7 @@ const Inicio = () => {
                       className="purecounter"
                     ></span>
                     <p>
-                      <strong>Hours Of Support</strong> aut commodi quaerat
+                      <strong>Nuestro Soporte</strong> aut commodi quaerat
                     </p>
                   </div>
                 </div>
@@ -260,7 +267,7 @@ const Inicio = () => {
                       className="purecounter"
                     ></span>
                     <p>
-                      <strong>Hard Workers</strong> rerum asperiores dolor
+                      <strong>Trabajadores Duros</strong> rerum asperiores dolor
                     </p>
                   </div>
                 </div>
@@ -270,7 +277,7 @@ const Inicio = () => {
           <section id="skills" className="skills section-bg">
             <div className="container">
               <div className="section-title">
-                <h2>Skills</h2>
+                <h2>Habilidades</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -384,7 +391,7 @@ const Inicio = () => {
           <section id="resume" className="resume">
             <div className="container">
               <div className="section-title">
-                <h2>Resume</h2>
+                <h2>Resumen</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -396,9 +403,9 @@ const Inicio = () => {
 
               <div className="row">
                 <div className="col-lg-6" data-aos="fade-up">
-                  <h3 className="resume-title">Sumary</h3>
+                  <h3 className="resume-title">Resumen</h3>
                   <div className="resume-item pb-0">
-                    <h4>Alex Smith</h4>
+                    <h4>Kevin Villegas</h4>
                     <p>
                       <em>
                         Innovative and deadline-driven Graphic Designer with 3+
@@ -414,7 +421,7 @@ const Inicio = () => {
                     </ul>
                   </div>
 
-                  <h3 className="resume-title">Education</h3>
+                  <h3 className="resume-title">Educacion</h3>
                   <div className="resume-item">
                     <h4>Master of Fine Arts &amp; Graphic Design</h4>
                     <h5>2015 - 2016</h5>
@@ -428,7 +435,7 @@ const Inicio = () => {
                     </p>
                   </div>
                   <div className="resume-item">
-                    <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
+                    <h4>Bachiller &amp; Diseñador Grafico</h4>
                     <h5>2010 - 2014</h5>
                     <p>
                       <em>Rochester Institute of Technology, Rochester, NY</em>
@@ -446,9 +453,9 @@ const Inicio = () => {
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <h3 className="resume-title">Professional Experience</h3>
+                  <h3 className="resume-title">Experiencias Profesionales</h3>
                   <div className="resume-item">
-                    <h4>Senior graphic design specialist</h4>
+                    <h4>Expecialista en Diseño Grafico y JS</h4>
                     <h5>2019 - Present</h5>
                     <p>
                       <em>Experion, New York, NY </em>
@@ -474,7 +481,7 @@ const Inicio = () => {
                     </ul>
                   </div>
                   <div className="resume-item">
-                    <h4>Graphic design specialist</h4>
+                    <h4>Especialista en Diseño Grafico</h4>
                     <h5>2017 - 2018</h5>
                     <p>
                       <em>Stepping Stone Advertising, New York, NY</em>
@@ -506,7 +513,7 @@ const Inicio = () => {
           <section id="portfolio" className="portfolio section-bg">
             <div className="container">
               <div className="section-title">
-                <h2>Portfolio</h2>
+                <h2>Producto</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -520,10 +527,10 @@ const Inicio = () => {
                 <div className="col-lg-12 d-flex justify-content-center">
                   <ul id="portfolio-flters">
                     <li data-filter="*" className="filter-active">
-                      All
+                      Todo
                     </li>
                     <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-card">Card</li>
+                    <li data-filter=".filter-card">Tarjeta</li>
                     <li data-filter=".filter-web">Web</li>
                   </ul>
                 </div>
@@ -537,7 +544,7 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-1.jpg"
+                      src="../src/assets/img/portfolio/portfolio-1.jpg"
                       className="img-fluid"
                       alt=""
                     />
@@ -560,13 +567,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-2.jpg"
+                      src="../src/assets/img/portfolio/portfolio-2.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-2.jpg"
+                        href="../src/assets/img/portfolio/portfolio-2.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="Web 3"
@@ -583,13 +590,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-3.jpg"
+                      src="../src/assets/img/portfolio/portfolio-3.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-3.jpg"
+                        href="../src/assets/img/portfolio/portfolio-3.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="App 2"
@@ -606,13 +613,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-card">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-4.jpg"
+                      src="../src/assets/img/portfolio/portfolio-4.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-4.jpg"
+                        href="../src/assets/img/portfolio/portfolio-4.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="Card 2"
@@ -629,13 +636,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-5.jpg"
+                      src="../src/assets/img/portfolio/portfolio-5.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-5.jpg"
+                        href="../src/assets/img/portfolio/portfolio-5.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="Web 2"
@@ -652,13 +659,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-6.jpg"
+                      src="../src/assets/img/portfolio/portfolio-6.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-6.jpg"
+                        href="../src/assets/img/portfolio/portfolio-6.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="App 3"
@@ -675,13 +682,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-card">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-7.jpg"
+                      src="../src/assets/img/portfolio/portfolio-7.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-7.jpg"
+                        href="../src/assets/img/portfolio/portfolio-7.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="Card 1"
@@ -698,13 +705,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-card">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-8.jpg"
+                      src="../src/assets/img/portfolio/portfolio-8.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-8.jpg"
+                        href="../src/assets/img/portfolio/portfolio-8.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="Card 3"
@@ -721,13 +728,13 @@ const Inicio = () => {
                 <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                   <div className="portfolio-wrap">
                     <img
-                      src="assets/img/portfolio/portfolio-9.jpg"
+                      src="../src/assets/img/portfolio/portfolio-9.jpg"
                       className="img-fluid"
                       alt=""
                     />
                     <div className="portfolio-links">
                       <a
-                        href="assets/img/portfolio/portfolio-9.jpg"
+                        href="../src/assets/img/portfolio/portfolio-9.jpg"
                         data-gallery="portfolioGallery"
                         className="portfolio-lightbox"
                         title="Web 3"
@@ -747,7 +754,7 @@ const Inicio = () => {
           <section id="services" className="services">
             <div className="container">
               <div className="section-title">
-                <h2>Services</h2>
+                <h2>Servicios</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -763,7 +770,7 @@ const Inicio = () => {
                     <i className="bi bi-briefcase"></i>
                   </div>
                   <h4 className="title">
-                    <a href="">Lorem Ipsum</a>
+                    <a href="">Trabajo de Calidad</a>
                   </h4>
                   <p className="description">
                     Voluptatum deleniti atque corrupti quos dolores et quas
@@ -779,7 +786,7 @@ const Inicio = () => {
                     <i className="bi bi-card-checklist"></i>
                   </div>
                   <h4 className="title">
-                    <a href="">Dolor Sitema</a>
+                    <a href="">Seguridad</a>
                   </h4>
                   <p className="description">
                     Minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -795,7 +802,7 @@ const Inicio = () => {
                     <i className="bi bi-bar-chart"></i>
                   </div>
                   <h4 className="title">
-                    <a href="">Sed ut perspiciatis</a>
+                    <a href="">Cumple las Espectativas</a>
                   </h4>
                   <p className="description">
                     Duis aute irure dolor in reprehenderit in voluptate velit
@@ -811,7 +818,7 @@ const Inicio = () => {
                     <i className="bi bi-binoculars"></i>
                   </div>
                   <h4 className="title">
-                    <a href="">Magni Dolores</a>
+                    <a href="">Excelentes Resultados</a>
                   </h4>
                   <p className="description">
                     Excepteur sint occaecat cupidatat non proident, sunt in
@@ -827,7 +834,7 @@ const Inicio = () => {
                     <i className="bi bi-brightness-high"></i>
                   </div>
                   <h4 className="title">
-                    <a href="">Nemo Enim</a>
+                    <a href="">Trabajo Especial</a>
                   </h4>
                   <p className="description">
                     At vero eos et accusamus et iusto odio dignissimos ducimus
@@ -843,7 +850,7 @@ const Inicio = () => {
                     <i className="bi bi-calendar4-week"></i>
                   </div>
                   <h4 className="title">
-                    <a href="">Eiusmod Tempor</a>
+                    <a href="">Citas</a>
                   </h4>
                   <p className="description">
                     Et harum quidem rerum facilis est et expedita distinctio.
@@ -857,13 +864,12 @@ const Inicio = () => {
           <section id="testimonials" className="testimonials section-bg">
             <div className="container">
               <div className="section-title">
-                <h2>Testimonials</h2>
+                <h2>Testimonios</h2>
                 <p>
-                  Magnam dolores commodi suscipit. Necessitatibus eius
-                  consequatur ex aliquid fuga eum quidem. Sit sint consectetur
-                  velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit
-                  suscipit alias ea. Quia fugiat sit in iste officiis commodi
-                  quidem hic quas.
+                  Contrate a Kevin Villegas como Desarrollador Web para mi
+                  primera pagina Web y fue un total exito cumplio con los
+                  requerimientos esperados y su diseño tranquilo y moderno atrae
+                  a los clientes.
                 </p>
               </div>
 
@@ -877,14 +883,14 @@ const Inicio = () => {
                     <div className="testimonial-item" data-aos="fade-up">
                       <p>
                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                        Proin iaculis purus consequat sem cure digni ssim donec
-                        porttitora entum suscipit rhoncus. Accusantium quam,
-                        ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                        risus at semper.
+                        Contrate a Kevin Villegas como Desarrollador Web para mi
+                        primera pagina Web y fue un total exito cumplio con los
+                        requerimientos esperados y su diseño tranquilo y moderno
+                        atrae a los clientesw.
                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                       </p>
                       <img
-                        src="assets/img/testimonials/testimonials-1.jpg"
+                        src="../src/assets/img/testimonials/testimonials-1.jpg"
                         className="testimonial-img"
                         alt=""
                       />
@@ -908,7 +914,7 @@ const Inicio = () => {
                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                       </p>
                       <img
-                        src="assets/img/testimonials/testimonials-2.jpg"
+                        src="../src/assets/img/testimonials/testimonials-2.jpg"
                         className="testimonial-img"
                         alt=""
                       />
@@ -932,7 +938,7 @@ const Inicio = () => {
                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                       </p>
                       <img
-                        src="assets/img/testimonials/testimonials-3.jpg"
+                        src="../src/assets/img/testimonials/testimonials-3.jpg"
                         className="testimonial-img"
                         alt=""
                       />
@@ -956,7 +962,7 @@ const Inicio = () => {
                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                       </p>
                       <img
-                        src="assets/img/testimonials/testimonials-4.jpg"
+                        src="../src/assets/img/testimonials/testimonials-4.jpg"
                         className="testimonial-img"
                         alt=""
                       />
@@ -980,7 +986,7 @@ const Inicio = () => {
                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                       </p>
                       <img
-                        src="assets/img/testimonials/testimonials-5.jpg"
+                        src="../src/assets/img/testimonials/testimonials-5.jpg"
                         className="testimonial-img"
                         alt=""
                       />
@@ -996,7 +1002,7 @@ const Inicio = () => {
           <section id="contact" className="contact">
             <div className="container">
               <div className="section-title">
-                <h2>Contact</h2>
+                <h2>Contactos</h2>
                 <p>
                   Magnam dolores commodi suscipit. Necessitatibus eius
                   consequatur ex aliquid fuga eum quidem. Sit sint consectetur
@@ -1011,7 +1017,7 @@ const Inicio = () => {
                   <div className="info">
                     <div className="address">
                       <i className="bi bi-geo-alt"></i>
-                      <h4>Location:</h4>
+                      <h4>Ubicacion:</h4>
                       <p>A108 Adam Street, New York, NY 535022</p>
                     </div>
 
@@ -1023,12 +1029,12 @@ const Inicio = () => {
 
                     <div className="phone">
                       <i className="bi bi-phone"></i>
-                      <h4>Call:</h4>
+                      <h4>Llamanos:</h4>
                       <p>+1 5589 55488 55s</p>
                     </div>
 
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.141588676263!2d-75.91710382589336!3d4.745438741269918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e386fe2573bf9d1%3A0xbd6366a5dac24360!2sCentro%20de%20Tecnolog%C3%ADas%20Agroindustriales%20SENA!5e0!3m2!1ses!2sco!4v1698721114324!5m2!1ses!2sco"
                       style={{ border: "0", width: "100%", height: "290px" }}
                     ></iframe>
                   </div>
@@ -1043,7 +1049,7 @@ const Inicio = () => {
                   >
                     <div className="row">
                       <div className="form-group col-md-6">
-                        <label htmlFor="name">Your Name</label>
+                        <label htmlFor="name">Nombre</label>
                         <input
                           type="text"
                           name="name"
@@ -1053,7 +1059,7 @@ const Inicio = () => {
                         />
                       </div>
                       <div className="form-group col-md-6">
-                        <label htmlFor="name">Your Email</label>
+                        <label htmlFor="name">Email</label>
                         <input
                           type="email"
                           className="form-control"
@@ -1064,7 +1070,7 @@ const Inicio = () => {
                       </div>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="name">Subject</label>
+                      <label htmlFor="name">Titulo</label>
                       <input
                         type="text"
                         className="form-control"
@@ -1074,7 +1080,7 @@ const Inicio = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="name">Message</label>
+                      <label htmlFor="name">Mensaje</label>
                       <textarea
                         className="form-control"
                         name="message"
@@ -1090,7 +1096,7 @@ const Inicio = () => {
                       </div>
                     </div>
                     <div className="text-center">
-                      <button type="submit">Send Message</button>
+                      <button type="submit">Enviar Mensaje</button>
                     </div>
                   </form>
                 </div>
@@ -1103,11 +1109,11 @@ const Inicio = () => {
             <div className="copyright">
               &copy; Copyright{" "}
               <strong>
-                <span>iPortfolio</span>
+                <span>Niko y Kevin</span>
               </strong>
             </div>
             <div className="credits">
-              <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              <a href="https://bootstrapmade.com/">ADSO_2023</a>
             </div>
           </div>
         </footer>

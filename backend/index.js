@@ -8,7 +8,7 @@ conexion();
 
 //CREO EL SERVIDOR NODE
 const app = express();
-const puerto = process.env.PUERTO;
+const puerto = 3900;
 
 //CONEXION MIDDLEAWRE
 app.use(cors());
