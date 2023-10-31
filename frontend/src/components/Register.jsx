@@ -1,36 +1,85 @@
 import React, { useState } from "react";
 import HelperForm from "../helpers/HelperForm";
 import { Global } from "../helpers/Global";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-//funcion
 const Register = () => {
-  //redirecciona
   const navigate = useNavigate();
   const { form, cambiar } = HelperForm({});
-  const [guardado, setGuardado] = useState("no_enviado");
-  const guardarPerfil = async (e) => {
+  const [, setGuardado] = useState("");
+
+  //MENSAJE DE LOS CAMPOS VACIOS
+  const mostrarCamposVaciosAlert = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Campos Vacíos",
+      text: "Por favor complete todos los campos obligatorios.",
+    });
+  };
+
+  //MENSAJE DE ERROR
+  const mostrarErrorAlert = message => {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: message,
+    });
+  };
+
+  //VALIDACION DEL FORMULARIO
+  const validarFormulario = () => {
+    if (!form.apodo || !form.nombre || !form.email || !form.password) {
+      mostrarCamposVaciosAlert();
+      return false;
+    }
+    return true;
+  };
+
+  const guardarRegistro = async e => {
     e.preventDefault();
-    //lega al objeto generado por el helper
+
+    if (!validarFormulario()) {
+      return;
+    }
+
     let nuevoPerfil = form;
 
-    //guardar en la api
-    const request = await fetch(Global.url + "/personal/registrando", {
-      method: "POST",
-      body: JSON.stringify(nuevoPerfil),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await request.json();
-    if (data.status == true) {
-      setGuardado("Guardado");
-      navigate("/Inicio");
-    } else {
-      setGuardado("Error");
+    try {
+      const response = await fetch(Global.url + "/personal/registrando", {
+        method: "POST",
+        body: JSON.stringify(nuevoPerfil),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+
+      if (data.status === true) {
+        //MENSAJE EXITOSO
+        setGuardado("Guardado");
+        Swal.fire({
+          icon: "success",
+          title: "Registro exitoso",
+          text: "¡Tu registro se ha completado con éxito!",
+          timer: 1500,
+          showConfirmButton: false,
+        }).then(() => {
+          navigate("/Inicio");
+        });
+      } else {
+        //MENSAJE DE ERROR
+        setGuardado("Error");
+        mostrarErrorAlert(data.mensaje);
+      }
+    } catch (error) {
+      //MENSAJE SI HAY PROBLEMA DEL SERVIDOR
+      mostrarErrorAlert(
+        "Algo salió mal. Por favor, inténtelo de nuevo más tarde."
+      );
     }
   };
+
   return (
     <>
       <section
@@ -44,130 +93,94 @@ const Register = () => {
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
               <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div className="card" style={{ borderRadius: "15px;" }}>
+                <div className="card" style={{ borderRadius: "15px" }}>
                   <div className="card-body p-5">
                     <h2 className="text-uppercase text-center mb-5">
-                      Crea tu Cuenta
-                      <i class="bi bi-person-badge"></i>
+                      Crea tu Cuenta <i className="bi bi-person-badge"></i>
                     </h2>
-                    {guardado == "Guardado" ? (
-                      <div className="alert alert-info" role="alert">
-                        Login Exitoso!
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    {guardado == "Error" ? (
-                      <div className="alert alert-danger" role="alert">
-                        Error en la Consulta
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    <form onSubmit={guardarPerfil}>
+
+                    <form onSubmit={guardarRegistro}>
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          id="form3Example1cg"
                           className="form-control form-control-lg"
                           name="apodo"
                           onChange={cambiar}
+                          placeholder="Apodo"
                         />
-                        <label className="form-label" htmlFor="form3Example1cg">
-                          Apodo
-                        </label>
                       </div>
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          id="form3Example1cg"
                           className="form-control form-control-lg"
                           name="nombre"
                           onChange={cambiar}
+                          placeholder="Nombre"
                         />
-                        <label className="form-label" htmlFor="form3Example1cg">
-                          Nombre
-                        </label>
                       </div>
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          id="form3Example1cg"
                           className="form-control form-control-lg"
                           name="apellido"
                           onChange={cambiar}
+                          placeholder="Apellido"
                         />
-                        <label className="form-label" htmlFor="form3Example1cg">
-                          Apellido
-                        </label>
                       </div>
                       <div className="form-outline mb-4">
                         <input
                           type="Date"
-                          id="form3Example1cg"
                           className="form-control form-control-lg"
                           name="fechaNace"
                           onChange={cambiar}
+                          placeholder="Fecha Nacimiento"
                         />
-                        <label className="form-label" htmlFor="form3Example1cg">
-                          Fecha Nacimiento
-                        </label>
                       </div>
 
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          id="form3Example3cg"
                           className="form-control form-control-lg"
                           name="direccion"
                           onChange={cambiar}
+                          placeholder="Direccion"
                         />
-                        <label className="form-label" htmlFor="form3Example3cg">
-                          Direcccion
-                        </label>
                       </div>
 
                       <div className="form-outline mb-4">
                         <input
                           type="email"
-                          id="form3Example3cg"
                           className="form-control form-control-lg"
                           name="email"
                           onChange={cambiar}
+                          placeholder="Correo Electronico"
                         />
-                        <label className="form-label" htmlFor="form3Example3cg">
-                          Correo Electronico
-                        </label>
                       </div>
 
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          id="form3Example3cg"
                           className="form-control form-control-lg"
                           name="telefono"
                           onChange={cambiar}
+                          placeholder="Telefono"
                         />
-                        <label className="form-label" htmlFor="form3Example3cg">
-                          Telefono
-                        </label>
                       </div>
 
                       <div className="form-outline mb-4">
                         <select
-                          class="form-select"
+                          className="form-select"
                           aria-label="Default select example"
                           name="genero"
                           onChange={cambiar}
                         >
-                          <option selected></option>
+                          <option value="1" disabled>
+                            Seleccione
+                          </option>
                           <option value="1">Hombre</option>
                           <option value="2">Mujer</option>
                           <option value="3">Otro</option>
                         </select>
-                        <label className="form-label" htmlFor="form3Example3cg">
-                          Genero
-                        </label>
                       </div>
 
                       <div className="form-outline mb-4">
@@ -177,10 +190,8 @@ const Register = () => {
                           className="form-control form-control-lg"
                           name="password"
                           onChange={cambiar}
+                          placeholder="Contraseña"
                         />
-                        <label className="form-label" htmlFor="form3Example4cg">
-                          Contraseña
-                        </label>
                       </div>
 
                       <div className="form-check d-flex justify-content-center mb-5">
@@ -194,28 +205,26 @@ const Register = () => {
                           className="form-check-label"
                           htmlFor="form2Example3g"
                         >
-                          Acepto los terminos y condiciones{" "}
+                          Acepto los términos y condiciones{" "}
                           <a href="#!" className="text-body">
-                            <u>Terminos y Servicios</u>
+                            <u>Términos y Servicios</u>
                           </a>
                         </label>
                       </div>
 
-                      <div className="d-flex justify-content-center">
-                        <a href="#">
-                          <button
-                            type="submit"
-                            className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                          >
-                            Registrar
-                          </button>
-                        </a>
+                      <div className="d-flex justify-content-center d-grid gap-2 col-6 mx-auto">
+                        <button
+                          type="submit"
+                          className="btn btn-success btn-block btn-lg gradient-custom-3 btn-lg rounded-pill mb-3"
+                        >
+                          Registrar
+                        </button>
                       </div>
 
                       <p className="text-center text-muted mt-5 mb-0">
-                        Ya estas Registrado?{" "}
+                        ¿Ya estás registrado?{" "}
                         <a href="/" className="fw-bold text-body">
-                          <u>Ingresa Aqui!</u>
+                          <u>Ingresa Aquí!</u>
                         </a>
                       </p>
                     </form>
@@ -229,4 +238,5 @@ const Register = () => {
     </>
   );
 };
+
 export default Register;

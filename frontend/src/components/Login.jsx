@@ -1,34 +1,82 @@
 import React, { useState } from "react";
 import HelperForm from "../helpers/HelperForm";
 import { Global } from "../helpers/Global";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-//funcion
 const Login = () => {
   //redirecciona
   const navigate = useNavigate();
   const { form, cambiar } = HelperForm({});
-  const [guardado, setGuardado] = useState("no_enviado");
-  const guardarPerfil = async (e) => {
+  const [, setGuardado] = useState("");
+
+  //MENSAJE DE LOS CAMPOS VACIOS
+  const mostrarCamposVaciosAlert = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Campos Vacíos",
+      text: "Por favor complete todos los campos obligatorios.",
+    });
+  };
+
+  //MENSAJE DE ERROR
+  const mostrarErrorAlert = message => {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: message,
+    });
+  };
+
+  //VALIDACION DE LOS CAMPOS VACIOS
+  const validarFormulario = () => {
+    if (!form.email || !form.password) {
+      mostrarCamposVaciosAlert();
+      return false;
+    }
+    return true;
+  };
+
+  const guardarLogin = async e => {
     e.preventDefault();
-    //lega al objeto generado por el helper
+
+    if (!validarFormulario()) {
+      return;
+    }
+
     let nuevoPerfil = form;
 
-    //guardar en la api
-    const request = await fetch(Global.url + "/personal/login", {
-      method: "POST",
-      body: JSON.stringify(nuevoPerfil),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await request.json();
-    if (data.status == true) {
-      setGuardado("Guardado");
-      navigate("/Inicio");
-    } else {
-      setGuardado("Error");
+    try {
+      const request = await fetch(Global.url + "/personal/login", {
+        method: "POST",
+        body: JSON.stringify(nuevoPerfil),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await request.json();
+      if (data.status === true) {
+        //MENSAJE EXITOSO
+        setGuardado("Guardado");
+        Swal.fire({
+          icon: "success",
+          title: "Login exitoso",
+          text: "¡Te logeaste completamente con éxito!",
+          timer: 1500,
+          showConfirmButton: false,
+        }).then(() => {
+          navigate("/Inicio");
+        });
+      } else {
+        //MENSAJE DE ERROR
+        setGuardado("Error");
+        mostrarErrorAlert(data.mensaje);
+      }
+    } catch (error) {
+      //MENSAJE SI HAY PROBLEMA DEL SERVIDOR
+      mostrarErrorAlert(
+        "Algo salió mal. Por favor, inténtelo de nuevo más tarde."
+      );
     }
   };
 
@@ -50,21 +98,8 @@ const Login = () => {
                     Inicio Sesion
                     <i className="bi bi-box-arrow-in-right"></i>
                   </h2>
-                  {guardado == "Guardado" ? (
-                    <div className="alert alert-info" role="alert">
-                      Login Exitoso!
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  {guardado == "Error" ? (
-                    <div className="alert alert-danger" role="alert">
-                      Error en la Consulta
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <form onSubmit={guardarPerfil}>
+
+                  <form onSubmit={guardarLogin}>
                     <div className="row">
                       <div className="col-md-6 mb-4"></div>
                     </div>
@@ -110,16 +145,17 @@ const Login = () => {
                       </label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                      Ingresar
-                    </button>
-
-                    <div className="text-center">
-                      <p>o Registrate Aqui:</p>
+                    <div className="text-center d-grid gap-2 col-6 mx-auto  ">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-lg rounded-pill mb-3"
+                      >
+                        Ingresar
+                      </button>
+                      <p>Registrate Aquí:</p>
                       <a
-                        type="button"
                         href="/Register"
-                        className="btn btn-info btn-block mb-4"
+                        className="btn btn-info btn-lg btn-block rounded-pill"
                       >
                         Registrarse
                       </a>
