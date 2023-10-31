@@ -110,7 +110,7 @@ const personalLogin = async (req, res) => {
       });
     }
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -146,7 +146,7 @@ const personalActualizar = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -183,7 +183,7 @@ const eliminarUsuario = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -220,7 +220,7 @@ const obtenerInformacionPersonal = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -247,7 +247,7 @@ const registrarRegistrosPersonales = async (req, res) => {
       datos: consulta.map((personal) => personal.toJSON()),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,

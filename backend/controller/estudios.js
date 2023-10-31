@@ -25,7 +25,7 @@ const agregarHistorialEstudios = async (req, res) => {
       datos: estudioGuardado.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -58,7 +58,7 @@ const actualizarInformacionEducativa = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -94,7 +94,7 @@ const eliminarHistorialEducativo = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -131,7 +131,7 @@ const obtenerHistorialEducativo = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
@@ -168,7 +168,7 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
       datos: consulta.map(resultado => resultado.toJSON()),
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       mensaje: "Error en la consulta",
       error: error.message,
       status: false,
