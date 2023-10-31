@@ -26,7 +26,11 @@ const agregarHistorialEstudios = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
+<<<<<<< HEAD
+      mensaje: "Error en la consulta",
+=======
       mensaje: "Error en el servidor",
+>>>>>>> 8d649c7181cb1c2f16c1a5f459bfc54ed40c2cbd
       error: error.message,
       status: false,
     });
@@ -165,7 +169,7 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.map(resultado => resultado.toJSON()),
+      datos: consulta.map((resultado) => resultado.toJSON()),
     });
   } catch (error) {
     return res.status(500).json({

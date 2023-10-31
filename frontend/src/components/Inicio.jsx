@@ -7,9 +7,6 @@ import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 
 const Inicio = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-
   return (
     <>
       <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
