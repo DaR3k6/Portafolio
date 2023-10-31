@@ -2,8 +2,31 @@ import React, { useState } from "react";
 import img from "../assets/img/profile.jpg";
 import img1 from "../assets/img/fondostudy.png";
 import img2 from "../assets/img/fondo2.png";
-
+import HelperForm from "../helpers/HelperForm";
+import { Global } from "../helpers/Global";
 const Inicio = () => {
+  const { form, cambiar } = HelperForm({});
+  const [guardado, setGuardado] = useState("no_enviado");
+  const guardarPerfil = async (e) => {
+    e.preventDefault();
+    //lega al objeto generado por el helper
+    let nuevoPerfil = form;
+
+    //guardar en la api
+    const request = await fetch(Global.url + "/estudios/agregar", {
+      method: "POST",
+      body: JSON.stringify(nuevoPerfil),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await request.json();
+    if (data.status == true) {
+      setGuardado("Guardado");
+    } else {
+      setGuardado("Error");
+    }
+  };
   return (
     <>
       <body>
@@ -109,7 +132,20 @@ const Inicio = () => {
                   tengan y fianzar un contraro.
                 </p>
               </div>
-
+              {guardado == "Guardado" ? (
+                <div className="alert alert-info" role="alert">
+                  Login Exitoso!
+                </div>
+              ) : (
+                ""
+              )}
+              {guardado == "Error" ? (
+                <div className="alert alert-danger" role="alert">
+                  Error en la Consulta
+                </div>
+              ) : (
+                ""
+              )}
               <div className="row" data-aos="fade-in">
                 <div className="col-lg-5 d-flex align-items-stretch">
                   <div className="info w-100 tex-center">
@@ -124,6 +160,7 @@ const Inicio = () => {
                     method="post"
                     role="form"
                     className="php-email-form"
+                    onSubmit={guardarPerfil}
                   >
                     <div className="form-group">
                       <label htmlFor="name">Tipo del Estudio</label>
@@ -133,6 +170,7 @@ const Inicio = () => {
                         name="tipo"
                         id="subject"
                         required
+                        onChange={cambiar}
                       />
                     </div>
                     <div className="form-group">
@@ -142,6 +180,7 @@ const Inicio = () => {
                         name="detalle"
                         rows="10"
                         required
+                        onChange={cambiar}
                       ></textarea>
                     </div>
                     <div className="form-group">
@@ -152,6 +191,7 @@ const Inicio = () => {
                         name="fechaFin"
                         id="subject"
                         required
+                        onChange={cambiar}
                       />
                     </div>
                     <div className="form-group">
@@ -160,6 +200,7 @@ const Inicio = () => {
                         class="form-select form-select-lg mb-3"
                         aria-label="Large select example"
                         name="notas"
+                        onChange={cambiar}
                       >
                         <option value="1">Aprobado</option>
                         <option value="2">No Aprovado</option>
@@ -636,12 +677,7 @@ const Inicio = () => {
                       alt=""
                     />
                     <div className="portfolio-links">
-                      <a
-                        href="assets/img/portfolio/portfolio-1.jpg"
-                        data-gallery="portfolioGallery"
-                        className="portfolio-lightbox"
-                        title="App 1"
-                      >
+                      <a href="#">
                         <i className="bx bx-plus"></i>
                       </a>
                       <a href="portfolio-details.html" title="More Details">
@@ -837,7 +873,43 @@ const Inicio = () => {
               </div>
             </div>
           </section>
-
+          {/* Seccion de los modales */}
+          <div
+            className="modal fade"
+            id="producto1"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="exampleModalLabel">
+                    Modal title
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">...</div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="Submit" className="btn btn-primary">
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <section id="services" className="services">
             <div className="container">
               <div className="section-title">
