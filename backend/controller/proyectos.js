@@ -25,8 +25,8 @@ const agregarNuevoProyecto = async (req, res) => {
       datos: proyectoGuardado.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
-      mensaje: "Error en la consulta",
+    return res.status(500).json({
+      mensaje: "Error en el servidor",
       error: error.message,
       status: false,
     });
@@ -58,8 +58,8 @@ const actualizarProyecto = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
-      mensaje: "Error en la consulta",
+    return res.status(500).json({
+      mensaje: "Error en el servidor",
       error: error.message,
       status: false,
     });
@@ -94,8 +94,8 @@ const eliminarProyecto = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
-      mensaje: "Error en la consulta",
+    return res.status(500).json({
+      mensaje: "Error en el servidor",
       error: error.message,
       status: false,
     });
@@ -131,8 +131,8 @@ const obtenerDetallesDelProyecto = async (req, res) => {
       datos: consulta.toJSON(),
     });
   } catch (error) {
-    return res.status(400).json({
-      mensaje: "Error en la consulta",
+    return res.status(500).json({
+      mensaje: "Error en el servidor",
       error: error.message,
       status: false,
     });
@@ -168,8 +168,8 @@ const listarProyectosDeUnaPersona = async (req, res) => {
       datos: consulta.map(resultado => resultado.toJSON()),
     });
   } catch (error) {
-    return res.status(400).json({
-      mensaje: "Error en la consulta",
+    return res.status(500).json({
+      mensaje: "Error en el servidor",
       error: error.message,
       status: false,
     });
@@ -195,8 +195,8 @@ const listarTodosLosProyectos = async (req, res) => {
       datos: consulta.map(proyectos => proyectos.toJSON()),
     });
   } catch (error) {
-    return res.status(400).json({
-      mensaje: "Error en la consulta",
+    return res.status(500).json({
+      mensaje: "Error en el servidor",
       error: error.message,
       status: false,
     });
