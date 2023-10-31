@@ -3,6 +3,10 @@ const { Schema, model, default: mongoose } = require("mongoose");
 const EstudiosSchema = Schema(
   {
     persona_id: { type: mongoose.Schema.Types.ObjectId, ref: "personal" },
+    tipo: {
+      type: String,
+      require: true,
+    },
     detalle: {
       type: String,
       require: true,
