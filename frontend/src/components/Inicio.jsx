@@ -4,9 +4,39 @@ import img from "../assets/img/profile.jpg";
 import img1 from "../assets/img/fondostudy.png";
 import img2 from "../assets/img/fondo2.png";
 import Swal from "sweetalert2";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../assets/js/main";
 
 const Inicio = () => {
+  //CAPTURAMOS EL ID USUARIOS
+  // const [datos,setDatos] = useState(
+  // []
+  // )
+  // useEffect(() => {
+  //   const token = Json.parse(localStorage.getItem("token"));
+  //   console.log(token);
+  // });
+
+  //REDIRIGE
+  const navigate = useNavigate();
+  //ALERTA PARA CERRAR SESION
+  const cerrarSesion = () => {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Quieres salir de la pagina!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Salir!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Sesion cerrada!", "Exitosamente.", "success");
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <>
       <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -75,7 +105,11 @@ const Inicio = () => {
                 </a>
               </li>
               <li>
-                <a href="/" className="nav-link scrollto">
+                <a
+                  className="nav-link scrollto"
+                  onClick={cerrarSesion}
+                  style={{ cursor: "pointer" }}
+                >
                   <i class="bi bi-box-arrow-right"></i>
                   <span>Cerrar Sesion</span>
                 </a>
