@@ -144,24 +144,51 @@ const obtenerHistorialEducativo = async (req, res) => {
 };
 
 //CONTROLADOR PARA LISTAR UNA PERSONA EL HISTORIAL DE  ESTUDIOS
+// const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+
+//     //VEREFICO SI EXISTE EL ID
+//     if (!id) {
+//       return res.status(400).json({
+//         mensaje: "ID de usuario no válido",
+//         status: false,
+//       });
+//     }
+
+//     //HACE LA CONSULTA OBTENER LA INFROMACION PERSONAL
+//     const consulta = await Estudios.find({ persona_id: id }).exec();
+
+//     if (!consulta) {
+//       return res.status(404).json({
+//         mensaje: "No se encontró el usuario con el ID proporcionado",
+//         status: false,
+//       });
+//     }
+
+//     return res.status(200).json({
+//       resultado: "Obtención exitosa",
+//       status: true,
+//       datos: consulta.map((resultado) => resultado.toJSON()),
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       mensaje: "Error en el servidor",
+//       error: error.message,
+//       status: false,
+//     });
+//   }
+// };
+
+//CONTROLADOR LISTAR TODOS LOS PERSONA EL HISTORIAL DE  ESTUDIOS
 const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
   try {
-    const id = req.params.id;
+    //CONSULTA TRAE TODA SU INFROAMCION PERSONAL
+    const consulta = await Proyecto.find().exec();
 
-    //VEREFICO SI EXISTE EL ID
-    if (!id) {
-      return res.status(400).json({
-        mensaje: "ID de usuario no válido",
-        status: false,
-      });
-    }
-
-    //HACE LA CONSULTA OBTENER LA INFROMACION PERSONAL
-    const consulta = await Estudios.find({ persona_id: id }).exec();
-
-    if (!consulta) {
+    if (consulta.length === 0) {
       return res.status(404).json({
-        mensaje: "No se encontró el usuario con el ID proporcionado",
+        mensaje: "No se encontraron registros de los proyectos",
         status: false,
       });
     }
@@ -169,7 +196,7 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.map((resultado) => resultado.toJSON()),
+      datos: consulta.map(proyectos => proyectos.toJSON()),
     });
   } catch (error) {
     return res.status(500).json({
@@ -179,6 +206,8 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
     });
   }
 };
+
+
 
 module.exports = {
   agregarHistorialEstudios,
