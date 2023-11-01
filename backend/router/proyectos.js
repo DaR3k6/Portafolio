@@ -5,7 +5,7 @@ const auth = require("../controller/auth");
 const proyectoController = require("../controller/proyectos");
 
 //ROUTER DE AGREGAR NUEVO PROYECTO
-router.post("/proyecto/agregar", auth, proyectoController.agregarNuevoProyecto);
+router.post("/proyecto/agregar", proyectoController.agregarNuevoProyecto);
 
 //ROUTER DE ACTUALIZAR PROYECTO TOKEN!
 router.put("/proyecto/actualizar/:id", proyectoController.actualizarProyecto);

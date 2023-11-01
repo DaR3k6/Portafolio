@@ -106,6 +106,11 @@ const personalLogin = async (req, res) => {
           id: consulta._id,
           email: consulta.email,
           token: token,
+          nombre: consulta.nombre,
+          apellido: consulta.apellido,
+          fechaNacimiento: consulta.fechaNacimiento,
+          direccion: consulta.direccion,
+          telefono: consulta.telefono,
         },
       });
     }
@@ -244,7 +249,7 @@ const registrarRegistrosPersonales = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.map(personal => personal.toJSON()),
+      datos: consulta.map((personal) => personal.toJSON()),
     });
   } catch (error) {
     return res.status(500).json({

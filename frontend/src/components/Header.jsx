@@ -3,6 +3,8 @@ import img from "../assets/img/profile.jpg";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
+  //CAPTURO VAIABLE NOMBRE DEL USUARIO
+  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
   //REDIRIGE
   const navigate = useNavigate();
   //ALERTA PARA CERRAR SESION
@@ -32,7 +34,7 @@ const Header = () => {
           <div className="profile">
             <img src={img} alt="" className="img-fluid rounded-circle w-90" />
             <h1 className="text-light">
-              <a href="index.html">Usuario</a>
+              <a href="index.html">{nombreUser.toUpperCase()}</a>
             </h1>
             <div className="social-links mt-3 text-center">
               <a href="#" className="twitter">

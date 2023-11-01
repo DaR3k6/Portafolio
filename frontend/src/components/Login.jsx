@@ -58,10 +58,9 @@ const Login = () => {
       if (data.status === true) {
         //MENSAJE EXITOSO
         localStorage.setItem("token", data.usuario.token);
-        localStorage.setItem(
-          "email",
-          JSON.stringify(data.usuario.email, data.usuario.id)
-        );
+        localStorage.setItem("email", JSON.stringify(data.usuario.email));
+        localStorage.setItem("id", JSON.stringify(data.usuario.id));
+        localStorage.setItem("nombre", JSON.stringify(data.usuario.nombre));
         console.log(data);
         setGuardado("Guardado");
         Swal.fire({

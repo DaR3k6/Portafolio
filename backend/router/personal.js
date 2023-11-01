@@ -18,7 +18,7 @@ router.delete("/personal/eliminar/:id?", personalController.eliminarUsuario);
 
 //ROUTER OBTENGO LA INFORMACION PERSONAL TOKEN!
 router.get(
-  "/personal/informacion/:id?",
+  "/personal/informacion",
   personalController.obtenerInformacionPersonal
 );
 

@@ -19,7 +19,7 @@ const Register = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = message => {
+  const mostrarErrorAlert = (message) => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -36,7 +36,7 @@ const Register = () => {
     return true;
   };
 
-  const guardarRegistro = async e => {
+  const guardarRegistro = async (e) => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -65,7 +65,7 @@ const Register = () => {
           timer: 1500,
           showConfirmButton: false,
         }).then(() => {
-          navigate("/Inicio");
+          navigate("/");
         });
       } else {
         //MENSAJE DE ERROR
