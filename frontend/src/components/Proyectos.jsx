@@ -71,10 +71,10 @@ const Proyectos = () => {
                     data-bs-toggle="modal"
                     data-bs-target="#proyecto1Edit"
                   >
-                    <i class="bi bi-pencil-square"></i>
+                    <i className="bi bi-pencil-square"></i>
                   </a>
                   <a href="portfolio-details.html" title="More Details">
-                    <i class="bi bi-trash"></i>
+                    <i className="bi bi-trash"></i>
                   </a>
                 </div>
               </div>

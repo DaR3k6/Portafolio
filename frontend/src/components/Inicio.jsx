@@ -60,79 +60,79 @@ const Inicio = () => {
 
       {/* edicion productos modal */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="proyecto1Edit"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content bg-dark text-light">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Editar Proyecto<i class="bi bi-pencil-square"></i>
+        <div className="modal-dialog">
+          <div className="modal-content bg-dark text-light">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Editar Proyecto<i className="bi bi-pencil-square"></i>
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
+            <div className="modal-body">
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">
                   📚
                 </span>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Nombre Proyecto"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                 />
               </div>
-              <div class="input-group mb-3">
-                <div class="form-floating mb-3 text-dark">
+              <div className="input-group mb-3">
+                <div className="form-floating mb-3 text-dark">
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     placeholder="Leave a comment here"
                     id="floatingTextareaDisabled"
                   ></textarea>
-                  <label for="floatingTextareaDisabled">
+                  <label htmlFor="floatingTextareaDisabled">
                     Detalles del Proyecto
                   </label>
                 </div>
               </div>
-              <div class="input-group mb-3">
-                <label for="basic-url" class="form-label">
+              <div className="input-group mb-3">
+                <label htmlFor="basic-url" className="form-label">
                   Ingresa tu URL
                 </label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3">
+                <div className="input-group">
+                  <span className="input-group-text" id="basic-addon3">
                     https://
                   </span>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="basic-url"
                     aria-describedby="basic-addon3 basic-addon4"
                   />
                 </div>
-                <div class="form-text" id="basic-addon4">
+                <div className="form-text" id="basic-addon4">
                   Sitio de tu proyecto.
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button "
-                class="btn btn-secondary btn btn-danger"
+                className="btn btn-secondary btn btn-danger"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Save changes
               </button>
             </div>

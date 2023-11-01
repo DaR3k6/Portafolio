@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Resumen = () => {
+const Resumen = ({ datos, setDatos }) => {
   return (
     <>
       <section id="resume" className="resume">
@@ -17,23 +17,30 @@ const Resumen = () => {
 
           <div className="row">
             <div className="col-lg-6" data-aos="fade-up">
-              <h3 className="resume-title">Resumen</h3>
-              <div className="resume-item pb-0">
-                <h4>Kevin Villegas</h4>
-                <p>
-                  <em>
-                    Innovative and deadline-driven Graphic Designer with 3+
-                    years of experience designing and developing user-centered
-                    digital/print marketing material from initial concept to
-                    final, polished deliverable.
-                  </em>
-                </p>
-                <ul>
-                  <li>Portland par 127,Orlando, FL</li>
-                  <li>(123) 456-7891</li>
-                  <li>alice.barkley@example.com</li>
-                </ul>
-              </div>
+              {/* RECCORRO CON UN CLICO PARA TRAER TODOS LOS ESTUDIOS */}
+              {datos.lenght === 0 || datos == null ? (
+                <h1>No hay Datos</h1>
+              ) : (
+                <>
+                  <h3 className="resume-title">Estudios</h3>
+                  <div className="resume-item pb-0">
+                    <h4>Kevin Villegas</h4>
+                    <p>
+                      <em>
+                        Innovative and deadline-driven Graphic Designer with 3+
+                        years of experience designing and developing
+                        user-centered digital/print marketing material from
+                        initial concept to final, polished deliverable.
+                      </em>
+                    </p>
+                    <ul>
+                      <li>Portland par 127,Orlando, FL</li>
+                      <li>(123) 456-7891</li>
+                      <li>alice.barkley@example.com</li>
+                    </ul>
+                  </div>
+                </>
+              )}
 
               <h3 className="resume-title">Educacion</h3>
               <div className="resume-item">
