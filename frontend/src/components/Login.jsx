@@ -3,6 +3,7 @@ import HelperForm from "../helpers/HelperForm";
 import { Global } from "../helpers/Global";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Modal } from "bootstrap";
 
 const Login = () => {
   //redirecciona
@@ -20,7 +21,7 @@ const Login = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = message => {
+  const mostrarErrorAlert = (message) => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -37,7 +38,7 @@ const Login = () => {
     return true;
   };
 
-  const guardarLogin = async e => {
+  const guardarLogin = async (e) => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -171,6 +172,42 @@ const Login = () => {
                 className="w-100 rounded-4 shadow-4"
                 alt=""
               />
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Modal title
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">...</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
             </div>
           </div>
         </div>

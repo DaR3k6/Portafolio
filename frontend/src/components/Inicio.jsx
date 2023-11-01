@@ -56,17 +56,22 @@ const Inicio = () => {
               </li>
               <li>
                 <a href="#portfolio" className="nav-link scrollto">
-                  <i className="bx bx-book-content"></i> <span>Portafolio</span>
+                  <i className="bx bx-book-content"></i> <span>Proyectos</span>
                 </a>
               </li>
               <li>
                 <a href="#services" className="nav-link scrollto">
-                  <i className="bx bx-server"></i> <span>Servicio</span>
+                  <i className="bx bx-server"></i> <span>Servicios</span>
                 </a>
               </li>
               <li>
                 <a href="#contact" className="nav-link scrollto">
                   <i className="bx bx-envelope"></i> <span>Contacto</span>
+                </a>
+              </li>
+              <li>
+                <a href="#estudio" className="nav-link scrollto">
+                  <i class="bi bi-bar-chart-line"></i> <span>Estudios</span>
                 </a>
               </li>
               <li>
@@ -97,7 +102,7 @@ const Inicio = () => {
       </section>
 
       <main id="main">
-        <section id="contact" className="contact">
+        <section id="estudio" className="estudio">
           <div className="container">
             <div className="section-title">
               <h2>
@@ -587,7 +592,9 @@ const Inicio = () => {
         <section id="portfolio" className="portfolio section-bg">
           <div className="container">
             <div className="section-title">
-              <h2>Producto</h2>
+              <h2>
+                Proyectos <i class="bi bi-book"></i>
+              </h2>
               <p>
                 Magnam dolores commodi suscipit. Necessitatibus eius consequatur
                 ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
@@ -617,16 +624,15 @@ const Inicio = () => {
               <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                 <div className="portfolio-wrap">
                   <img
-                    src="../src/assets/img/portfolio/portfolio-1.jpg"
+                    src="../src/assets/img/portfolio/img1.jpg"
                     className="img-fluid"
                     alt=""
                   />
                   <div className="portfolio-links">
                     <a
-                      href="assets/img/portfolio/portfolio-1.jpg"
-                      data-gallery="portfolioGallery"
-                      className="portfolio-lightbox"
-                      title="App 1"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#proyecto1"
                     >
                       <i className="bx bx-plus"></i>
                     </a>
@@ -640,27 +646,26 @@ const Inicio = () => {
               <div className="col-lg-4 col-md-6 portfolio-item filter-web">
                 <div className="portfolio-wrap">
                   <img
-                    src="../src/assets/img/portfolio/portfolio-2.jpg"
+                    src="../src/assets/img/portfolio/img2.jpg"
                     className="img-fluid"
                     alt=""
                   />
                   <div className="portfolio-links">
                     <a
-                      href="../src/assets/img/portfolio/portfolio-2.jpg"
-                      data-gallery="portfolioGallery"
-                      className="portfolio-lightbox"
-                      title="Web 3"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#proyecto1Edit"
                     >
-                      <i className="bx bx-plus"></i>
+                      <i class="bi bi-pencil-square"></i>
                     </a>
                     <a href="portfolio-details.html" title="More Details">
-                      <i className="bx bx-link"></i>
+                      <i class="bi bi-trash"></i>
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+              {/* <div className="col-lg-4 col-md-6 portfolio-item filter-app">
                 <div className="portfolio-wrap">
                   <img
                     src="../src/assets/img/portfolio/portfolio-3.jpg"
@@ -819,7 +824,7 @@ const Inicio = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -1193,6 +1198,168 @@ const Inicio = () => {
       >
         <i className="bi bi-arrow-up-short"></i>
       </a>
+      {/* modales */}
+      <div
+        class="modal fade"
+        id="proyecto1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Agregar Proyecto <i class="bi bi-folder-plus"></i>
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  📚
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre Proyecto"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <div class="form-floating mb-3">
+                  <textarea
+                    class="form-control"
+                    placeholder="Leave a comment here"
+                    id="floatingTextareaDisabled"
+                  ></textarea>
+                  <label for="floatingTextareaDisabled">
+                    Detalles del Proyecto
+                  </label>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <label for="basic-url" class="form-label">
+                  Ingresa tu URL
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3">
+                    https://
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3 basic-addon4"
+                  />
+                </div>
+                <div class="form-text" id="basic-addon4">
+                  Sitio de tu proyecto.
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* edicion productos modal */}
+      <div
+        class="modal fade"
+        id="proyecto1Edit"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Editar Proyecto<i class="bi bi-pencil-square"></i>
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  📚
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre Proyecto"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <div class="form-floating mb-3 text-dark">
+                  <textarea
+                    class="form-control"
+                    placeholder="Leave a comment here"
+                    id="floatingTextareaDisabled"
+                  ></textarea>
+                  <label for="floatingTextareaDisabled">
+                    Detalles del Proyecto
+                  </label>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <label for="basic-url" class="form-label">
+                  Ingresa tu URL
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3">
+                    https://
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3 basic-addon4"
+                  />
+                </div>
+                <div class="form-text" id="basic-addon4">
+                  Sitio de tu proyecto.
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button "
+                class="btn btn-secondary btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

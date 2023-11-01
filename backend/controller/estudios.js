@@ -26,11 +26,11 @@ const agregarHistorialEstudios = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-<<<<<<< HEAD
+      // <<<<<<< HEAD
       mensaje: "Error en la consulta",
-=======
+      // =======
       mensaje: "Error en el servidor",
->>>>>>> 8d649c7181cb1c2f16c1a5f459bfc54ed40c2cbd
+      // >>>>>>> 8d649c7181cb1c2f16c1a5f459bfc54ed40c2cbd
       error: error.message,
       status: false,
     });
