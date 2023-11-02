@@ -59,7 +59,7 @@ const Header = () => {
               <img
                 src={img1}
                 alt=""
-                className="img-fluid rounded-circle w-90"
+                className="img-fluid rounded-circle w-100"
               />
             ) : (
               ""

@@ -184,11 +184,11 @@ const obtenerHistorialEducativo = async (req, res) => {
 const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
   try {
     //CONSULTA TRAE TODA SU INFROAMCION PERSONAL
-    const consulta = await Proyecto.find().exec();
+    const consulta = await Estudios.find().exec();
 
     if (consulta.length === 0) {
       return res.status(404).json({
-        mensaje: "No se encontraron registros de los proyectos",
+        mensaje: "No se encontraron registros de los estudios",
         status: false,
       });
     }
@@ -196,7 +196,7 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.map(proyectos => proyectos.toJSON()),
+      datos: consulta.map((estudios) => estudios.toJSON()),
     });
   } catch (error) {
     return res.status(500).json({
@@ -206,8 +206,6 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
     });
   }
 };
-
-
 
 module.exports = {
   agregarHistorialEstudios,
