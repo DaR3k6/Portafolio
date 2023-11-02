@@ -61,6 +61,9 @@ const Login = () => {
         localStorage.setItem("email", JSON.stringify(data.usuario.email));
         localStorage.setItem("id", JSON.stringify(data.usuario.id));
         localStorage.setItem("nombre", JSON.stringify(data.usuario.nombre));
+        localStorage.setItem("genero", data.usuario.genero);
+        localStorage.setItem("telefono", data.usuario.telefono);
+        localStorage.setItem("direccion", data.usuario.direccion);
         console.log(data);
         setGuardado("Guardado");
         Swal.fire({

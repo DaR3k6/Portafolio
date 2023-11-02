@@ -20,14 +20,11 @@ router.delete(
 );
 
 //ROUTER PARA OBTENER HISTORIAL EL HISTORIAL DE ESTUDIOS TOKEN!
-router.get(
-  "/estudios/historial/:id?",
-  estudiosController.obtenerHistorialEducativo
-);
+router.get("/estudios/historial", estudiosController.obtenerHistorialEducativo);
 
 //ROUTER PARA OBTENER LA INFORMACION DEL USUARIO SU HISTORIAL DE ESTUDIOS TOKEN!
 router.get(
-  "/estududios/historialUsuario/:id?",
+  "/estududios/historialUsuario",
   estudiosController.listarHistorialesEducativosDeUnaPersona
 );
 

@@ -1,9 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Global } from "../helpers/Global";
+import Estudio from "./Estudio";
+import Swal from "sweetalert2";
 
 const Resumen = () => {
   //CAPTURO EL NOMBRE DEL USUARIO INGRESADO
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
+  //CREAMOS VARIABLE PARA TRAER TODOS LOS ESTUDIOS
+  const [usuario, setUsuario] = useState([]);
+  useEffect(() => {
+    fetch(Global.url + "/estududios/historialUsuario", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json()) // Manejo de la promesa
+      .then((data) => {
+        console.log(data);
+        setUsuario(data.datos);
+      })
+      .catch((error) => {
+        console.error("Error al obtener datos:", error);
+      });
+  }, []);
+  //CREACION ALERTA ELIMINAR ESTUDIO
+  const eliminarEstudio = () => {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Quieres Eliminar este Estudio?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Eliminar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Estudio borrado!", "Exitosamente.", "success");
+      }
+    });
+  };
   return (
     <>
       <section id="resume" className="resume">
@@ -11,114 +47,145 @@ const Resumen = () => {
           <div className="section-title">
             <h2>Resumen</h2>
             <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              Aqui encontraras algunos de mis estudios realizados a traves de mi
+              carrera y profesiones.
             </p>
           </div>
 
           <div className="row">
-            <div className="col-lg-6" data-aos="fade-up">
-              {/* RECCORRO CON UN CLICO PARA TRAER TODOS LOS ESTUDIOS */}
-              <h3 className="resume-title">Estudios</h3>
-              <div className="resume-item pb-0">
-                <h4>{nombreUser.toUpperCase()}</h4>
-                <p>
-                  <em>
-                    Innovative and deadline-driven Graphic Designer with 3+
-                    years of experience designing and developing user-centered
-                    digital/print marketing material from initial concept to
-                    final, polished deliverable.
-                  </em>
-                </p>
-                <ul>
-                  <li>Portland par 127,Orlando, FL</li>
-                  <li>(123) 456-7891</li>
-                  <li>alice.barkley@example.com</li>
-                </ul>
-              </div>
-
-              <h3 className="resume-title">Educacion</h3>
-              <div className="resume-item">
-                <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                <h5>2015 - 2016</h5>
-                <p>
-                  <em>Rochester Institute of Technology, Rochester, NY</em>
-                </p>
-                <p>
-                  Qui deserunt veniam. Et sed aliquam labore tempore sed
-                  quisquam iusto autem sit. Ea vero voluptatum qui ut
-                  dignissimos deleniti nerada porti sand markend
-                </p>
-              </div>
-              <div className="resume-item">
-                <h4>Bachiller &amp; Diseñador Grafico</h4>
-                <h5>2010 - 2014</h5>
-                <p>
-                  <em>Rochester Institute of Technology, Rochester, NY</em>
-                </p>
-                <p>
-                  Quia nobis sequi est occaecati aut. Repudiandae et iusto quae
-                  reiciendis et quis Eius vel ratione eius unde vitae rerum
-                  voluptates asperiores voluptatem Earum molestiae consequatur
-                  neque etlon sader mart dila
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <h3 className="resume-title">Experiencias Profesionales</h3>
-              <div className="resume-item">
-                <h4>Expecialista en Diseño Grafico y JS</h4>
-                <h5>2019 - Present</h5>
-                <p>
-                  <em>Experion, New York, NY </em>
-                </p>
-                <ul>
-                  <li>
-                    Lead in the design, development, and implementation of the
-                    graphic, layout, and production communication materials
-                  </li>
-                  <li>
-                    Delegate tasks to the 7 members of the design team and
-                    provide counsel on all aspects of the project.
-                  </li>
-                  <li>
-                    Supervise the assessment of all graphic materials in order
-                    to ensure quality and accuracy of the design
-                  </li>
-                  <li>
-                    Oversee the efficient use of production project budgets
-                    ranging from $2,000 - $25,000
-                  </li>
-                </ul>
-              </div>
-              <div className="resume-item">
-                <h4>Especialista en Diseño Grafico</h4>
-                <h5>2017 - 2018</h5>
-                <p>
-                  <em>Stepping Stone Advertising, New York, NY</em>
-                </p>
-                <ul>
-                  <li>
-                    Developed numerous marketing programs (logos,
-                    brochures,infographics, presentations, and advertisements).
-                  </li>
-                  <li>
-                    Managed up to 5 projects or tasks at a given time while
-                    under pressure
-                  </li>
-                  <li>
-                    Recommended and consulted with clients on the most
-                    appropriate graphic design
-                  </li>
-                  <li>
-                    Created 4+ design presentations and proposals a month for
-                    clients and account managers
-                  </li>
-                </ul>
-              </div>
-            </div>
+            {usuario.map((usuarios) => {
+              return (
+                <>
+                  <div
+                    key={usuarios._id}
+                    className="col-lg-6"
+                    data-aos="fade-up"
+                  >
+                    {
+                      /* RECCORRO CON UN CLICO PARA TRAER TODOS LOS ESTUDIOS */ console.log(
+                        usuarios.fechaFin
+                      )
+                    }
+                    {console.log(usuarios.fechaFin)}
+                    <h3 className="resume-title">{usuarios.tipo}</h3>
+                    <div className="resume-item pb-0">
+                      <h4>{usuarios.detalle}</h4>
+                      <p>
+                        <em>Estudios Realizados</em>
+                      </p>
+                      <ul>
+                        <li>{nombreUser.toUpperCase()}</li>
+                        <li>{usuarios.fechaFin}</li>
+                        <li>{usuarios.notas}</li>
+                      </ul>
+                      <button
+                        type="button"
+                        class="btn btn-info m-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#estudios"
+                      >
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger "
+                        onClick={eliminarEstudio}
+                      >
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="modal fade"
+                    id="estudios"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <form>
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Editar Estudios <i class="bi bi-pen"></i>
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1">
+                                📚
+                              </span>
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Tipo"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value={usuarios.tipo}
+                              />
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="form-floating mb-3">
+                                <textarea
+                                  class="form-control"
+                                  placeholder="Detalles"
+                                  id="floatingTextareaDisabled"
+                                  name="detalle"
+                                  value={usuarios.detalle}
+                                ></textarea>
+                                <label for="floatingTextareaDisabled">
+                                  Detalles del Estudio
+                                </label>
+                              </div>
+                            </div>
+                            <label htmlFor="name">Fecha de Finalizacion</label>
+                            <input
+                              type="date"
+                              className="form-control"
+                              name="fechaFin"
+                              id="subject"
+                              required
+                              value={usuarios.fechaFin}
+                            />
+                            <div className="form-group">
+                              <label htmlFor="name">Notas</label>
+                              <select
+                                class="form-select form-select-lg mb-3"
+                                aria-label="Large select example"
+                                name="notas"
+                                value={usuarios.notas}
+                              >
+                                <option value="1">Aprobado</option>
+                                <option value="2">No Aprovado</option>
+                                <option value="2">En Proceso</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                              Save changes
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
           </div>
         </div>
       </section>
