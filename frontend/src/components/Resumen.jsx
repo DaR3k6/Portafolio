@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Global } from "../helpers/Global";
 
 const Resumen = () => {
+  //CAPTURO EL NOMBRE DEL USUARIO INGRESADO
+  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
   return (
     <>
       <section id="resume" className="resume">
@@ -21,7 +23,7 @@ const Resumen = () => {
               {/* RECCORRO CON UN CLICO PARA TRAER TODOS LOS ESTUDIOS */}
               <h3 className="resume-title">Estudios</h3>
               <div className="resume-item pb-0">
-                <h4>Kevin Villegas</h4>
+                <h4>{nombreUser.toUpperCase()}</h4>
                 <p>
                   <em>
                     Innovative and deadline-driven Graphic Designer with 3+

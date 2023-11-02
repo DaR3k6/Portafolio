@@ -58,12 +58,12 @@ const Estudio = () => {
         console.log(data);
         setGuardado("Guardado");
         Swal.fire({
+          position: "top-end",
           icon: "success",
-          title: "Estudio Agregado exitosamente",
-          text: "¡Tu estudio a sido Agregado!",
-          timer: 1000,
+          title: "Tu estudio ha sido guardado!!",
           showConfirmButton: false,
-        }).then(() => {});
+          timer: 1500,
+        });
       } else {
         //MENSAJE DE ERROR
         setGuardado("Error");

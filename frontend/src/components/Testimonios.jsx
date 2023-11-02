@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+let nombreUser = JSON.parse(localStorage.getItem("nombre"));
 const Testimonios = () => {
   return (
     <>
@@ -8,7 +8,7 @@ const Testimonios = () => {
           <div className="section-title">
             <h2>Testimonios</h2>
             <p>
-              Contrate a Kevin Villegas como Desarrollador Web para mi primera
+              Contrate a {nombreUser} como Desarrollador Web para mi primera
               pagina Web y fue un total exito cumplio con los requerimientos
               esperados y su diseño tranquilo y moderno atrae a los clientes.
             </p>
@@ -24,10 +24,10 @@ const Testimonios = () => {
                 <div className="testimonial-item" data-aos="fade-up">
                   <p>
                     <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Contrate a Kevin Villegas como Desarrollador Web para mi
+                    Contrate a {nombreUser} como Desarrollador Web para mi
                     primera pagina Web y fue un total exito cumplio con los
                     requerimientos esperados y su diseño tranquilo y moderno
-                    atrae a los clientesw.
+                    atrae a los clientes.
                     <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                   </p>
                   <img

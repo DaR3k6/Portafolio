@@ -24,11 +24,8 @@ const Sobre = () => {
               />
             </div>
             <div className="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-              <h3>UI/UX Designer &amp; Web Developer.</h3>
-              <p className="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              <h3>HTML CSS /JS PHP &amp; Desarrollador Web.</h3>
+              <p className="fst-italic">Informaciones basicas sobre mi.</p>
               <div className="row">
                 <div className="col-lg-6">
                   <ul>
@@ -38,7 +35,7 @@ const Sobre = () => {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Pagina Web:</strong> <span>www.example.com</span>
+                      <strong>Nombre:</strong> <span>Usuario</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
@@ -68,7 +65,7 @@ const Sobre = () => {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Freelance:</strong> <span>Available</span>
+                      <strong>Freelance:</strong> <span>Disponible</span>
                     </li>
                   </ul>
                 </div>
