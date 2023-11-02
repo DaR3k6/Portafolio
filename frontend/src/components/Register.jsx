@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [enviarEmail, setEmail] = useState(false);
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
 
@@ -19,7 +20,7 @@ const Register = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = (message) => {
+  const mostrarErrorAlert = message => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -36,15 +37,15 @@ const Register = () => {
     return true;
   };
 
-  const guardarRegistro = async (e) => {
+  const guardarRegistro = async e => {
     e.preventDefault();
 
     if (!validarFormulario()) {
       return;
     }
 
-    let nuevoPerfil = form;
-
+    let nuevoPerfil = { ...form, enviarEmail };
+    console.log(nuevoPerfil);
     try {
       const response = await fetch(Global.url + "/personal/registrando", {
         method: "POST",
@@ -198,8 +199,11 @@ const Register = () => {
                         <input
                           className="form-check-input me-2"
                           type="checkbox"
-                          value=""
+                          value={enviarEmail}
                           id="form2Example3cg"
+                          onChange={e => {
+                            setEmail(e.target.value);
+                          }}
                         />
                         <label
                           className="form-check-label"
