@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import img from "../assets/img/profile.jpg";
+import img1 from "../assets/img/profileWoman.jpg";
+import img2 from "../assets/img/profileOther.jpg";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
-  //CAPTURO VAIABLE NOMBRE DEL USUARIO
+  //CAPTURO VAIABLES DEL USUARIO
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
+  let generoUser = localStorage.getItem("genero");
+  let imgGenero;
+  if (generoUser == 1) {
+    imgGenero = "Hombre";
+    console.log(imgGenero);
+  } else if (generoUser == 2) {
+    imgGenero = "Mujer";
+    console.log(imgGenero);
+  } else if (generoUser == 3) {
+    imgGenero = "Otro";
+    console.log(imgGenero);
+  }
   //REDIRIGE
   const navigate = useNavigate();
   //ALERTA PARA CERRAR SESION
@@ -32,7 +46,34 @@ const Header = () => {
       <header id="header">
         <div className="d-flex flex-column">
           <div className="profile">
-            <img src={img} alt="" className="img-fluid rounded-circle w-90" />
+            {imgGenero == "Hombre" ? (
+              <img
+                src={img}
+                alt=""
+                className="img-fluid rounded-circle w-100"
+              />
+            ) : (
+              ""
+            )}
+            {imgGenero == "Mujer" ? (
+              <img
+                src={img1}
+                alt=""
+                className="img-fluid rounded-circle w-90"
+              />
+            ) : (
+              ""
+            )}
+            {imgGenero == "Otro" ? (
+              <img
+                src={img2}
+                alt=""
+                className="img-fluid rounded-circle w-90"
+              />
+            ) : (
+              ""
+            )}
+
             <h1 className="text-light">
               <a href="index.html">{nombreUser.toUpperCase()}</a>
             </h1>

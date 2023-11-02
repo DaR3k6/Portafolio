@@ -111,6 +111,7 @@ const personalLogin = async (req, res) => {
           fechaNacimiento: consulta.fechaNacimiento,
           direccion: consulta.direccion,
           telefono: consulta.telefono,
+          genero: consulta.genero,
         },
       });
     }

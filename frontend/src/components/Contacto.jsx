@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 const Contacto = () => {
+  let emailUser = JSON.parse(localStorage.getItem("email"));
+  let phoneUser = JSON.parse(localStorage.getItem("telefono"));
+  let adressUser = localStorage.getItem("direccion");
   return (
     <>
       <section id="contact" className="contact">
@@ -8,10 +11,9 @@ const Contacto = () => {
           <div className="section-title">
             <h2>Contactos</h2>
             <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              Aqui podras encontrar mi informacion personal por si estas
+              interesad@ en mi trabajo y quieres realizar un proyecto con mi
+              colaboracion
             </p>
           </div>
 
@@ -21,19 +23,19 @@ const Contacto = () => {
                 <div className="address">
                   <i className="bi bi-geo-alt"></i>
                   <h4>Ubicacion:</h4>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <p>{adressUser}</p>
                 </div>
 
                 <div className="email">
                   <i className="bi bi-envelope"></i>
                   <h4>Email:</h4>
-                  <p>info@example.com</p>
+                  <p>{emailUser}</p>
                 </div>
 
                 <div className="phone">
                   <i className="bi bi-phone"></i>
                   <h4>Llamanos:</h4>
-                  <p>+1 5589 55488 55s</p>
+                  <p>{phoneUser}</p>
                 </div>
 
                 <iframe
