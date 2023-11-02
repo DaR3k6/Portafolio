@@ -15,7 +15,7 @@ router.put(
 
 //ROUTER DE ELIMINAR HISTORIAL DE ESTUDIOS TOKEN!
 router.delete(
-  "/estudios/eliminar/:id?",
+  "/estudios/eliminar/:id",
   estudiosController.eliminarHistorialEducativo
 );
 

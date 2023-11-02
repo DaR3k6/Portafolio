@@ -8,6 +8,7 @@ const Header = () => {
   //CAPTURO VAIABLES DEL USUARIO
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
   let generoUser = localStorage.getItem("genero");
+
   let imgGenero;
   if (generoUser == 1) {
     imgGenero = "Hombre";

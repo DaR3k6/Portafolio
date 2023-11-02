@@ -1,6 +1,25 @@
 import React, { Component } from "react";
 
 const Sobre = () => {
+  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
+  let generoUser = localStorage.getItem("genero");
+  let fechaNace = localStorage.getItem("fechaNacimiento");
+  let email = JSON.parse(localStorage.getItem("email"));
+  let phone = JSON.parse(localStorage.getItem("telefono"));
+  let direccion = localStorage.getItem("direccion");
+  let apellido = localStorage.getItem("apellido");
+  let array = fechaNace.split("T");
+  let fecha = array[0].slice(1, 11);
+  console.log(fecha);
+
+  let genero = "";
+  if (generoUser == 1) {
+    genero = "Hombre";
+  } else if (generoUser == 2) {
+    genero = "Mujer";
+  } else if (generoUser == 3) {
+    genero = "CatMan";
+  }
   return (
     <>
       <section id="about" className="about">
@@ -31,19 +50,19 @@ const Sobre = () => {
                   <ul>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Cumpleaños:</strong> <span>1 May 1995</span>
+                      <strong>Cumpleaños:</strong> <span>{fecha}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Nombre:</strong> <span>Usuario</span>
+                      <strong>Nombre:</strong> <span>{nombreUser}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Telefono:</strong> <span>+123 456 7890</span>
+                      <strong>Telefono:</strong> <span>{phone}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Ciudad:</strong> <span>New York, USA</span>
+                      <strong>Direccion:</strong> <span>{direccion}</span>
                     </li>
                   </ul>
                 </div>
@@ -52,20 +71,20 @@ const Sobre = () => {
                     <li>
                       <i className="bi bi-chevron-right"></i>{" "}
                       <strong>Edad:</strong>
-                      <span>30</span>
+                      <span>19</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Grado:</strong> <span>Master</span>
+                      <strong>Apellido:</strong> <span>{apellido}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
                       <strong>Correo:</strong>
-                      <span>email@example.com</span>
+                      <span>{email}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Freelance:</strong> <span>Disponible</span>
+                      <strong>Genero:</strong> <span>{genero}</span>
                     </li>
                   </ul>
                 </div>

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 //FUNCION ENVIANDO EL CORREO ELECTRONICO
-const enviarCorreo = async destinatario => {
+const enviarCorreo = async (destinatario) => {
   console.log("Enviando correo...");
   console.log(process.env.PASSWORD);
   console.log(process.env.EMAIL);
@@ -309,6 +309,7 @@ const personalLogin = async (req, res) => {
           telefono: consulta.telefono,
           genero: consulta.genero,
         },
+        consulta,
       });
     }
   } catch (error) {
@@ -446,7 +447,7 @@ const registrarRegistrosPersonales = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.map(personal => personal.toJSON()),
+      datos: consulta.map((personal) => personal.toJSON()),
     });
   } catch (error) {
     return res.status(500).json({
