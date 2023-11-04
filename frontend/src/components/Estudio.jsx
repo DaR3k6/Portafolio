@@ -150,7 +150,7 @@ const Estudio = () => {
                   >
                     <option value="1">Aprobado</option>
                     <option value="2">No Aprovado</option>
-                    <option value="2">En Proceso</option>
+                    <option value="3">En Proceso</option>
                   </select>
                 </div>
                 <div className="my-3">

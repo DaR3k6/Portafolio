@@ -8,7 +8,9 @@ const Resumen = () => {
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
   //CREAMOS VARIABLE PARA TRAER TODOS LOS ESTUDIOS
   const [usuario, setUsuario] = useState([]);
+
   useEffect(() => {
+    //TRAE TODOS LOS ESTUDIOS
     fetch(Global.url + "/estududios/historialUsuario", {
       method: "GET",
       headers: {
@@ -36,6 +38,24 @@ const Resumen = () => {
       confirmButtonText: "Si, Eliminar!",
     }).then((result) => {
       if (result.isConfirmed) {
+        //FUNCION DE BORRAR LOS ESTUDIOS
+        let idBorrar = document.querySelector("#idBorrar");
+        console.log(idBorrar.value);
+        //TRAE TODOS LOS ESTUDIOS
+        fetch(Global.url + `/estudios/eliminar/${idBorrar.value}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.datos._id);
+            setUsuario(data.datos);
+          })
+          .catch((error) => {
+            console.error("Error al obtener datos:", error);
+          });
         Swal.fire("Estudio borrado!", "Exitosamente.", "success");
       }
     });
@@ -74,6 +94,9 @@ const Resumen = () => {
                         <em>Estudios Realizados</em>
                       </p>
                       <ul>
+                        <li hidden id="idBorrar">
+                          {usuarios._id}
+                        </li>
                         <li>{nombreUser.toUpperCase()}</li>
                         <li>{usuarios.fechaFin}</li>
                         <li>{usuarios.notas}</li>

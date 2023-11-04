@@ -64,6 +64,11 @@ const Login = () => {
         localStorage.setItem("genero", data.usuario.genero);
         localStorage.setItem("telefono", data.usuario.telefono);
         localStorage.setItem("direccion", data.usuario.direccion);
+        localStorage.setItem(
+          "fechaNacimiento",
+          JSON.stringify(data.usuario.fechaNacimiento)
+        );
+        localStorage.setItem("apellido", data.usuario.apellido);
         console.log(data);
         setGuardado("Guardado");
         Swal.fire({
