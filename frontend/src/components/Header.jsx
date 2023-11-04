@@ -31,7 +31,7 @@ const Header = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Salir!",
-    }).then((result) => {
+    }).then(result => {
       if (result.isConfirmed) {
         Swal.fire("Sesion cerrada!", "Exitosamente.", "success");
         navigate("/");
