@@ -10,7 +10,7 @@ const Sobre = () => {
   let apellido = localStorage.getItem("apellido");
   let array = fechaNace.split("T");
   let fecha = array[0].slice(1, 11);
-  console.log(fecha);
+  //console.log(fecha);
 
   let genero = "";
   if (generoUser == 1) {

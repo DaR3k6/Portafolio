@@ -109,7 +109,7 @@ const obtenerHistorialEducativo = async (req, res) => {
 
     //VEREFICO SI EXISTE EL ID
     if (!id) {
-      return res.status(400).json({
+      return res.status(400).send({
         mensaje: "ID de usuario no válido",
         status: false,
       });
@@ -119,19 +119,19 @@ const obtenerHistorialEducativo = async (req, res) => {
     const consulta = await Estudios.findById(id).exec();
 
     if (!consulta) {
-      return res.status(404).json({
+      return res.status(404).send({
         mensaje: "No se encontró el usuario con el ID proporcionado",
         status: false,
       });
     }
 
-    return res.status(200).json({
+    return res.status(200).send({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.toJSON(),
+      datos: consulta,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(500).send({
       mensaje: "Error en el servidor",
       error: error.message,
       status: false,
@@ -183,19 +183,19 @@ const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
     const consulta = await Estudios.find().exec();
 
     if (consulta.length === 0) {
-      return res.status(404).json({
+      return res.status(404).send({
         mensaje: "No se encontraron registros de los estudios",
         status: false,
       });
     }
-
-    return res.status(200).json({
+    return res.status(200).send({
       resultado: "Obtención exitosa",
+      mensaje: "OK",
       status: true,
-      datos: consulta.map((estudios) => estudios.toJSON()),
+      datos: consulta,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(500).send({
       mensaje: "Error en el servidor",
       error: error.message,
       status: false,

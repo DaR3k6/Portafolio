@@ -64,6 +64,7 @@ const Estudio = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        window.location.reload(true);
       } else {
         //MENSAJE DE ERROR
         setGuardado("Error");
@@ -148,6 +149,7 @@ const Estudio = () => {
                     name="notas"
                     onChange={cambiar}
                   >
+                    <option value="0">Selecciona</option>
                     <option value="1">Aprobado</option>
                     <option value="2">No Aprovado</option>
                     <option value="3">En Proceso</option>
