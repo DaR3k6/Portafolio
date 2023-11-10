@@ -3,10 +3,9 @@ import Swal from "sweetalert2";
 import HelperForm from "../helpers/HelperForm";
 import { Global } from "../helpers/Global";
 
-const ModalAgregar = () => {
+const ModalEditar = () => {
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
-
   //MENSAJE DE LOS CAMPOS VACIOS
   const mostrarCamposVaciosAlert = () => {
     Swal.fire({
@@ -32,7 +31,6 @@ const ModalAgregar = () => {
     }
     return true;
   };
-
   //GUARDA LA INSERCION DE LOS PROYECTOS
   const guardarProyecto = async e => {
     e.preventDefault();
@@ -63,7 +61,7 @@ const ModalAgregar = () => {
           timer: 1000,
           showConfirmButton: false,
         }).then(() => {
-          window.location.reload();
+          proyectoAgregado();
         });
       } else {
         //MENSAJE DE ERROR
@@ -82,8 +80,7 @@ const ModalAgregar = () => {
     <>
       <div
         class="modal fade"
-        id="proyecto1"
-        tabindex="-1"
+        id="proyecto2"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -92,7 +89,7 @@ const ModalAgregar = () => {
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Agregar Proyecto <i class="bi bi-folder-plus"></i>
+                  Editar Proyecto <i class="bi bi-folder-plus"></i>
                 </h1>
                 <button
                   type="button"
@@ -172,4 +169,4 @@ const ModalAgregar = () => {
   );
 };
 
-export default ModalAgregar;
+export default ModalEditar;

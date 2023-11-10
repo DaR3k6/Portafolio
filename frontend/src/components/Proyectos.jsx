@@ -4,6 +4,7 @@ import { Global } from "../helpers/Global";
 
 const Proyectos = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [modalEditar, setModalEditar] = useState(false);
   const [proyectos, setProyectos] = useState([]);
 
   //MUESTRA EL MODAL DE AGREGAR
@@ -12,10 +13,18 @@ const Proyectos = () => {
   };
 
   //AGREGA EL MODAL A LA LISTA DESPUES LO MUESTRA
-  const agregarProyecto = nuevoProyecto => {
-    setProyectos([...proyectos, nuevoProyecto]);
-
+  const agregarProyecto = () => {
     setMostrarModal(false);
+  };
+
+  //MUESTRA EL MODAL DE EDITAR
+  const abrirModalEditar = () => {
+    setModalEditar(true);
+  };
+
+  //AGREGAR EL MODAL DE EDOTAR
+  const agregarModalEditar = () => {
+    setModalEditar(false);
   };
 
   // MUESTRA TODOS LOS PROYECTOS
@@ -105,11 +114,7 @@ const Proyectos = () => {
                       className="img-fluid"
                     />
                     <div className="portfolio-links">
-                      <a
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#proyecto1Edit"
-                      >
+                      <a data-bs-toggle="modal" data-bs-target="#proyecto2">
                         <i className="bi bi-pencil-square"></i>
                       </a>
                       <a href="portfolio-details.html" title="More Details">
@@ -126,6 +131,7 @@ const Proyectos = () => {
         </div>
 
         {mostrarModal && <ModalAgregar proyectoAgreado={agregarProyecto} />}
+        {modalEditar && <modalEditar proyectoEditado={agregarModalEditar} />}
       </section>
     </>
   );
