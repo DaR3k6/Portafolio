@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../components/Login";
-import Inicio from "../components/Inicio";
-import Register from "../components/Register";
+//DIVISION DE CARPETAS PRIVADAS Y PUBLICAS
+import Login from "../components/publica/Login";
+import Inicio from "../components/privada/Inicio";
+import Register from "../components/publica/Register";
 
 const Routing = () => {
   return (

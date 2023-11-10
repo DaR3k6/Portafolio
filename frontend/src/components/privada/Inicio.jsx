@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../assets/js/main";
+import "../../assets/js/main";
 //IMPORTAMOS TODOS LOS COMPONENTES DE LA PAGINA
 import Header from "./Header";
 import Estudio from "./Estudio";

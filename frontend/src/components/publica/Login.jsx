@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import HelperForm from "../helpers/HelperForm";
-import { Global } from "../helpers/Global";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 

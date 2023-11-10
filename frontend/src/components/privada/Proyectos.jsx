@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ModalAgregar from "../components/ModalAgregar.jsx";
-import { Global } from "../helpers/Global";
+import ModalAgregar from "../../components/privada/ModalAgregar.jsx";
+import { Global } from "../../helpers/Global";
 
 const Proyectos = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -12,7 +12,7 @@ const Proyectos = () => {
   };
 
   //AGREGA EL MODAL A LA LISTA DESPUES LO MUESTRA
-  const agregarProyecto = nuevoProyecto => {
+  const agregarProyecto = (nuevoProyecto) => {
     setProyectos([...proyectos, nuevoProyecto]);
 
     setMostrarModal(false);
@@ -26,12 +26,12 @@ const Proyectos = () => {
         "Content-Type": "application/json",
       },
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // Almacena los proyectos en el estado
         setProyectos(data.datos);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al cargar proyectos:", error);
       });
   }, []);
@@ -94,7 +94,7 @@ const Proyectos = () => {
             </div>
 
             {proyectos && proyectos.length > 0 ? (
-              proyectos.map(proyecto => (
+              proyectos.map((proyecto) => (
                 <div
                   key={proyecto._id}
                   className="col-lg-4 col-md-6 portfolio-item filter-web"

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import img1 from "../assets/img/fondostudy.png";
-import img2 from "../assets/img/fondo2.png";
-import HelperForm from "../helpers/HelperForm";
-import { Global } from "../helpers/Global";
+import img1 from "../../assets/img/fondostudy.png";
+import img2 from "../../assets/img/fondo2.png";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
 const Estudio = () => {
   const { form, cambiar } = HelperForm({});
