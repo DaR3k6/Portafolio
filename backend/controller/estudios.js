@@ -139,7 +139,7 @@ const obtenerHistorialEducativo = async (req, res) => {
   }
 };
 
-//CONTROLADOR PARA LISTAR UNA PERSONA EL HISTORIAL DE  ESTUDIOS
+// //CONTROLADOR PARA LISTAR UNA PERSONA EL HISTORIAL DE  ESTUDIOS
 // const listarHistorialesEducativosDeUnaPersona = async (req, res) => {
 //   try {
 //     const id = req.params.id;

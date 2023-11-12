@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect, createContext } from "react";
-import { Global } from "../helpers/Global";
+import { Global } from "../../helpers/Global";
 
 const AuthContext = createContext();
 
@@ -17,27 +17,32 @@ export const AuthProvider = ({ children }) => {
   const autenticarUsuario = async () => {
     //obtener datos del usuario logueado
     const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
+    const idUsuario = localStorage.getItem("id");
+
+    console.log(token);
+    console.log(idUsuario);
 
     // validamos que los datos existan en el localstorage
-    if (!token || !user) {
+    if (!token || !idUsuario) {
       return false;
     }
     // si existen los transformamos en objeto javascript para manipular el ID del usuario
-    const userObj = JSON.parse(user);
-    const id = userObj.id;
+    const userObj = JSON.parse(idUsuario);
+    console.log(userObj);
+
     // Comprobacion del token del localstorage vs el del Backend
-
-    const request = await fetch(Global.url + "perfil/listarUno/" + id, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    });
+    const request = await fetch(
+      Global.url + "/personal/informacion/" + userObj,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }
+    );
     const data = await request.json();
-
-    setAutenticado(data.user);
+    setAutenticado(data.datos);
   };
 
   return (

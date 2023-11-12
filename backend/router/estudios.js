@@ -9,7 +9,7 @@ router.post("/estudios/agregar", estudiosController.agregarHistorialEstudios);
 
 //ROUTER DE ACTUALIZAR HISTORIAL DE ESTUDIOS TOKEN!
 router.put(
-  "/estudios/actualizar/:id?",
+  "/estudios/actualizar/:id",
   estudiosController.actualizarInformacionEducativa
 );
 
@@ -20,7 +20,10 @@ router.delete(
 );
 
 //ROUTER PARA OBTENER HISTORIAL EL HISTORIAL DE ESTUDIOS TOKEN!
-router.get("/estudios/historial", estudiosController.obtenerHistorialEducativo);
+router.get(
+  "/estudios/historial/:id",
+  estudiosController.obtenerHistorialEducativo
+);
 
 //ROUTER PARA OBTENER LA INFORMACION DEL USUARIO SU HISTORIAL DE ESTUDIOS TOKEN!
 router.get(

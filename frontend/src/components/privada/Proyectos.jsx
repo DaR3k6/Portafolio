@@ -1,35 +1,40 @@
 import React, { useEffect, useState } from "react";
-import ModalAgregar from "../components/ModalAgregar.jsx";
-import { Global } from "../helpers/Global";
+import ModalAgregar from "../../components/privada/ModalAgregar.jsx";
+import ModalEditar from "../../components/privada/ModalEditar.jsx";
+import { Global } from "../../helpers/Global";
+import Swal from "sweetalert2";
 
 const Proyectos = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
   const [proyectos, setProyectos] = useState([]);
+  const [proyectoEditando, setProyectoEditando] = useState(null);
 
-  //MUESTRA EL MODAL DE AGREGAR
+  //MODAL PARA AGREGAR
   const abrirModal = () => {
     setMostrarModal(true);
   };
 
-  //AGREGA EL MODAL A LA LISTA DESPUES LO MUESTRA
   const agregarProyecto = () => {
     setMostrarModal(false);
   };
 
-  //MUESTRA EL MODAL DE EDITAR
-  const abrirModalEditar = () => {
-    setModalEditar(true);
+  //MODAL PARA EDITAR
+  const abrirModalEditar = proyecto => {
+    if (proyecto && proyecto.nombre && proyecto.detalle && proyecto.link) {
+      setProyectoEditando(proyecto);
+      setModalEditar(true);
+    } else {
+      console.error("El proyecto no tiene la información necesaria.");
+    }
   };
 
-  //AGREGAR EL MODAL DE EDOTAR
   const agregarModalEditar = () => {
     setModalEditar(false);
   };
 
-  // MUESTRA TODOS LOS PROYECTOS
-  useEffect(() => {
-    fetch(Global.url + "/proyectos", {
+  const cargarProyectos = async () => {
+    await fetch(Global.url + "/proyectos", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -37,13 +42,53 @@ const Proyectos = () => {
     })
       .then(response => response.json())
       .then(data => {
-        // Almacena los proyectos en el estado
         setProyectos(data.datos);
       })
       .catch(error => {
         console.error("Error al cargar proyectos:", error);
       });
-  }, []);
+  };
+
+  //CREACION ALERTA ELIMINAR PROYECTO
+  const eliminarProyecto = id => {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Quieres Eliminar este Proyecto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Eliminar!",
+      showConfirmButton: true,
+    }).then(result => {
+      if (result.isConfirmed) {
+        //TRAE TODOS LOS PROYECTO
+        fetch(Global.url + `/proyecto/eliminar/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Cambia esta línea a setProyectos en lugar de setUsuario
+            setProyectos(data.datos);
+          })
+          .catch(error => {
+            console.error("Error al obtener datos:", error);
+          });
+        Swal.fire("Proyecto borrado!", "Exitosamente.", "success");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      }
+    });
+  };
+
+  useEffect(() => {
+    cargarProyectos();
+  }, [modalEditar]);
 
   return (
     <>
@@ -51,7 +96,7 @@ const Proyectos = () => {
         <div className="container">
           <div className="section-title">
             <h2>
-              Proyectos <i class="bi bi-book"></i>
+              Proyectos <i className="bi bi-book"></i>
             </h2>
             <p>
               Magnam dolores commodi suscipit. Necessitatibus eius consequatur
@@ -112,12 +157,24 @@ const Proyectos = () => {
                     <img
                       src="../src/assets/img/portfolio/img2.jpg"
                       className="img-fluid"
+                      alt=""
                     />
                     <div className="portfolio-links">
-                      <a data-bs-toggle="modal" data-bs-target="#proyecto2">
+                      <a
+                        href="#"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#modalEditar${proyecto._id}`}
+                        onClick={() => abrirModalEditar(proyecto)}
+                      >
                         <i className="bi bi-pencil-square"></i>
                       </a>
-                      <a href="portfolio-details.html" title="More Details">
+                      <a
+                        href="#"
+                        title="More Details"
+                        onClick={() => {
+                          eliminarProyecto(proyecto.id);
+                        }}
+                      >
                         <i className="bi bi-trash"></i>
                       </a>
                     </div>
@@ -129,9 +186,16 @@ const Proyectos = () => {
             )}
           </div>
         </div>
-
-        {mostrarModal && <ModalAgregar proyectoAgreado={agregarProyecto} />}
-        {modalEditar && <modalEditar proyectoEditado={agregarModalEditar} />}
+        {mostrarModal && <ModalAgregar proyectoAgregado={agregarProyecto} />}
+        {modalEditar && proyectoEditando && (
+          <ModalEditar
+            nombre={proyectoEditando.nombre}
+            descripcion={proyectoEditando.detalle}
+            link={proyectoEditando.link}
+            id={proyectoEditando._id}
+            proyectoEditado={agregarModalEditar}
+          />
+        )}
       </section>
     </>
   );

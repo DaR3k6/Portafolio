@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import img from "../assets/img/profile.jpg";
-import img1 from "../assets/img/profileWoman.jpg";
-import img2 from "../assets/img/profileOther.jpg";
+import img from "../../assets/img/profile.jpg";
+import img1 from "../../assets/img/profileWoman.jpg";
+import img2 from "../../assets/img/profileOther.jpg";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
@@ -32,7 +32,7 @@ const Header = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Salir!",
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Sesion cerrada!", "Exitosamente.", "success");
         navigate("/");

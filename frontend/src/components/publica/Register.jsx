@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import HelperForm from "../helpers/HelperForm";
-import { Global } from "../helpers/Global";
-import { useNavigate } from "react-router-dom";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
+import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Register = () => {
@@ -227,9 +227,9 @@ const Register = () => {
 
                       <p className="text-center text-muted mt-5 mb-0">
                         ¿Ya estás registrado?{" "}
-                        <a href="/" className="fw-bold text-body">
+                        <NavLink to="/" className="fw-bold text-body">
                           <u>Ingresa Aquí!</u>
-                        </a>
+                        </NavLink>
                       </p>
                     </form>
                   </div>

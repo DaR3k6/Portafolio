@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import HelperForm from "../helpers/HelperForm";
-import { Global } from "../helpers/Global";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
 
 const ModalAgregar = () => {
   const { form, cambiar } = HelperForm({});
@@ -16,7 +16,7 @@ const ModalAgregar = () => {
     });
   };
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = message => {
+  const mostrarErrorAlert = (message) => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -34,7 +34,7 @@ const ModalAgregar = () => {
   };
 
   //GUARDA LA INSERCION DE LOS PROYECTOS
-  const guardarProyecto = async e => {
+  const guardarProyecto = async (e) => {
     e.preventDefault();
 
     if (!validarFormulario()) {

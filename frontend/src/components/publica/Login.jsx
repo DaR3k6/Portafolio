@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import HelperForm from "../helpers/HelperForm";
-import { Global } from "../helpers/Global";
-import { useNavigate } from "react-router-dom";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
+import { Navigate, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
   //REDIRECCIONA
-  const navigate = useNavigate();
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
+  const [navLink, setnavLink] = useState(false);
 
   //MENSAJE DE LOS CAMPOS VACIOS
   const mostrarCamposVaciosAlert = () => {
@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = (message) => {
+  const mostrarErrorAlert = message => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -37,7 +37,7 @@ const Login = () => {
     return true;
   };
 
-  const guardarLogin = async (e) => {
+  const guardarLogin = async e => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -60,16 +60,7 @@ const Login = () => {
         localStorage.setItem("token", data.usuario.token);
         localStorage.setItem("email", JSON.stringify(data.usuario.email));
         localStorage.setItem("id", JSON.stringify(data.usuario.id));
-        localStorage.setItem("nombre", JSON.stringify(data.usuario.nombre));
-        localStorage.setItem("genero", data.usuario.genero);
-        localStorage.setItem("telefono", data.usuario.telefono);
-        localStorage.setItem("direccion", data.usuario.direccion);
-        localStorage.setItem(
-          "fechaNacimiento",
-          JSON.stringify(data.usuario.fechaNacimiento)
-        );
-        localStorage.setItem("apellido", data.usuario.apellido);
-        console.log(data);
+
         setGuardado("Guardado");
         Swal.fire({
           icon: "success",
@@ -78,7 +69,7 @@ const Login = () => {
           timer: 1000,
           showConfirmButton: false,
         }).then(() => {
-          navigate("/Inicio");
+          setnavLink(true);
         });
       } else {
         //MENSAJE DE ERROR
@@ -92,6 +83,10 @@ const Login = () => {
       );
     }
   };
+
+  if (navLink) {
+    return <Navigate to="/protafolioBienvenida" />;
+  }
 
   return (
     <>
@@ -166,12 +161,12 @@ const Login = () => {
                         Ingresar
                       </button>
                       <p>Registrate Aquí:</p>
-                      <a
-                        href="/Register"
+                      <NavLink
+                        to="/Registro"
                         className="btn btn-info btn-lg btn-block rounded-pill"
                       >
                         Registrarse
-                      </a>
+                      </NavLink>
                     </div>
                   </form>
                 </div>

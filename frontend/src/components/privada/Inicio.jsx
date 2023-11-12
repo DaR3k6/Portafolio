@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../assets/js/main";
+import UseAuth from "../../helpers/UseAuth";
+import "../../assets/js/main";
 //IMPORTAMOS TODOS LOS COMPONENTES DE LA PAGINA
 import Header from "./Header";
 import Estudio from "./Estudio";
@@ -12,16 +13,10 @@ import Servicies from "./Servicies";
 import Testimonios from "./Testimonios";
 import Contacto from "./Contacto";
 import Footer from "./Footer";
+
 const Inicio = () => {
-  //CAPTURAMOS EL ID USUARIOS
-  // const [datos,setDatos] = useState(
-  // []
-  // )
-  // useEffect(() => {
-  //   const token = Json.parse(localStorage.getItem("token"));
-  //   console.log(token);
-  // });
-  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
+  const { Autenticado } = UseAuth();
+
   return (
     <>
       <Header />
@@ -30,7 +25,7 @@ const Inicio = () => {
         className="d-flex flex-column justify-content-center align-items-center"
       >
         <div className="hero-container" data-aos="fade-in">
-          <h1>{nombreUser.toUpperCase()}</h1>
+          <h1>{Autenticado.nombre.toUpperCase()}</h1>
           <p>
             Soy Experto en Apis y MER.
             <span
