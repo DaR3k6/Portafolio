@@ -20,13 +20,13 @@ const Contacto = ({ Autenticado }) => {
                 <div className="address">
                   <i className="bi bi-geo-alt"></i>
                   <h4>Ubicacion:</h4>
-                  <p>{Autenticado.direccion}</p>
+                  <p>{Autenticado.direccion.toUpperCase()}</p>
                 </div>
 
                 <div className="email">
                   <i className="bi bi-envelope"></i>
                   <h4>Email:</h4>
-                  <p>{Autenticado.email}</p>
+                  <p>{Autenticado.email.toUpperCase()}</p>
                 </div>
 
                 <div className="phone">

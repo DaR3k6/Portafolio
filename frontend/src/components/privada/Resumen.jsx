@@ -127,11 +127,7 @@ const Resumen = ({ Autenticado }) => {
                           <li hidden id="idBorrar">
                             {estudio._id}
                           </li>
-<<<<<<< HEAD
-                          <li>{nombreUser}</li>
-=======
                           <li>{Autenticado.nombre.toUpperCase()}</li>
->>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
                           <li>{estudio.fechaFin.slice(0, 10)}</li>
                           <li>
                             {estudio.notas === 1 ? <li>Aprobado</li> : <></>}

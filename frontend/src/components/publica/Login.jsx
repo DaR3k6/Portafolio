@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = (message) => {
+  const mostrarErrorAlert = message => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -37,7 +37,7 @@ const Login = () => {
     return true;
   };
 
-  const guardarLogin = async (e) => {
+  const guardarLogin = async e => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -56,11 +56,15 @@ const Login = () => {
       });
       const data = await request.json();
       if (data.status === true) {
-        //MENSAJE EXITOSO
-        // localStorage.setItem("token", data.usuario.token);
-        localStorage.setItem("email", JSON.stringify(data.usuario.email));
-        localStorage.setItem("id", JSON.stringify(data.usuario.id));
+        //VEREFICO SI EL USUARIO EXISTE
+        const usuarioExistente = localStorage.getItem("usuario");
+        if (usuarioExistente) {
+          localStorage.removeItem("usuario");
+        }
+        localStorage.setItem("usuario", JSON.stringify(data.usuario));
+        console.log(data.usuario);
 
+        //MENSAJE EXITOSO
         setGuardado("Guardado");
         Swal.fire({
           icon: "success",
@@ -70,6 +74,10 @@ const Login = () => {
           showConfirmButton: false,
         }).then(() => {
           setnavLink(true);
+          
+          setTimeout(() => {
+            window.location.reload();
+          });
         });
       } else {
         //MENSAJE DE ERROR
@@ -85,6 +93,7 @@ const Login = () => {
   };
 
   if (navLink) {
+    window.location.reload();
     return <Navigate to="/Bienvenida" />;
   }
 

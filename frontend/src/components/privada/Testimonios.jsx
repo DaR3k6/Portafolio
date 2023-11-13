@@ -7,10 +7,10 @@ const Testimonios = ({ Autenticado }) => {
           <div className="section-title">
             <h2>Testimonios</h2>
             <p>
-              Contrate a {Autenticado.nombre} como Desarrollador Web para mi
-              primera pagina Web y fue un total exito cumplio con los
-              requerimientos esperados y su diseño tranquilo y moderno atrae a
-              los clientes.
+              Contrate a {Autenticado.nombre.toUpperCase()} como Desarrollador
+              Web para mi primera pagina Web y fue un total exito cumplio con
+              los requerimientos esperados y su diseño tranquilo y moderno atrae
+              a los clientes.
             </p>
           </div>
 
@@ -24,10 +24,10 @@ const Testimonios = ({ Autenticado }) => {
                 <div className="testimonial-item" data-aos="fade-up">
                   <p>
                     <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Contrate a {Autenticado.nombre} como Desarrollador Web para
-                    mi primera pagina Web y fue un total exito cumplio con los
-                    requerimientos esperados y su diseño tranquilo y moderno
-                    atrae a los clientes.
+                    Contrate a {Autenticado.nombre.toUpperCase()} como
+                    Desarrollador Web para mi primera pagina Web y fue un total
+                    exito cumplio con los requerimientos esperados y su diseño
+                    tranquilo y moderno atrae a los clientes.
                     <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                   </p>
                   <img

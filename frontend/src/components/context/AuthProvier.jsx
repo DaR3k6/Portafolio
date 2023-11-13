@@ -6,38 +6,32 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [Autenticado, setAutenticado] = useState({});
+
   useEffect(() => {
     autenticarUsuario();
   }, []);
-
-  /**
-   * Compara que el token sea valido
-   * @returns objeto serializado de la comparacion de localstorage vs api
-   */
+  console.log(Autenticado);
   const autenticarUsuario = async () => {
-    //obtener datos del usuario logueado
-    const token = localStorage.getItem("token");
-    const idUsuario = localStorage.getItem("id");
+    const usuario = localStorage.getItem("usuario");
 
-    // validamos que los datos existan en el localstorage
-    if (!token || !idUsuario) {
-      return false;
-    }
     try {
-      // si existen los transformamos en objeto javascript para manipular el ID del usuario
-      const userObj = JSON.parse(idUsuario);
-
-      // Comprobacion del token del localstorage vs el del Backend
+      const userObj = JSON.parse(usuario);
+      console.log(userObj);
+      if (!userObj.token || !userObj.nombre) {
+        return false;
+      }
       const request = await fetch(
-        Global.url + "/personal/informacion/" + userObj,
+        Global.url + "/personal/informacion/" + userObj.id,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: userObj.token,
           },
         }
       );
+
+      console.log(request);
 
       if (!request.ok) {
         console.error("Error en la autenticación:", response.statusText);

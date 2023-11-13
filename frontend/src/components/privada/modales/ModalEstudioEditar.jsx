@@ -6,12 +6,6 @@ import { Global } from "../../../helpers/Global";
 const ModalEstudioEditar = ({ tipo, detalle, fecha, notas, id, token }) => {
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
-<<<<<<< HEAD
-
-  if (notas == 1) {
-  }
-=======
->>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
   const mostrarCamposVaciosAlert = () => {
     Swal.fire({
       icon: "error",
@@ -114,39 +108,6 @@ const ModalEstudioEditar = ({ tipo, detalle, fecha, notas, id, token }) => {
                   defaultValue={tipo}
                 />
               </div>
-<<<<<<< HEAD
-              <div className="input-group mb-3">
-                <div className="form-floating mb-3">
-                  <textarea
-                    className="form-control"
-                    placeholder="Leave a comment here"
-                    name="detalle"
-                    onChange={cambiar}
-                    defaultValue={descripcion}
-                  ></textarea>
-                  <label>Detalles del Estudio</label>
-                </div>
-              </div>
-
-              <div className="input-group mb-3">
-                <input
-                  type="date"
-                  name="fecha"
-                  id=""
-                  onChange={cambiar}
-                  defaultValue={fecha}
-                />
-                <label htmlFor="">Fecha de estudio</label>
-              </div>
-
-              <div className="input-group mb-3">
-                <label className="form-label">Ingresa tu URL</label>
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="link"
-=======
               <div className="mb-3">
                 <label> Detalle : </label>
                 <input
@@ -175,7 +136,6 @@ const ModalEstudioEditar = ({ tipo, detalle, fecha, notas, id, token }) => {
                     class="form-select form-select-lg mb-3"
                     aria-label="Large select example"
                     name="notas"
->>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
                     onChange={cambiar}
                     defaultValue={notas}
                   >

@@ -147,7 +147,7 @@ const Estudio = () => {
                 <div className="form-group">
                   <label htmlFor="name">Notas</label>
                   <select
-                    class="form-select form-select-lg mb-3"
+                    className  ="form-select form-select-lg mb-3"
                     aria-label="Large select example"
                     name="notas"
                     onChange={cambiar}

@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 
-<<<<<<< HEAD
-const Sobre = () => {
-  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
-  let generoUser = localStorage.getItem("genero");
-  let fechaNace = localStorage.getItem("fechaNacimiento");
-  let email = localStorage.getItem("email");
-  let phone = localStorage.getItem("telefono");
-  let direccion = localStorage.getItem("direccion");
-  let apellido = localStorage.getItem("apellido");
-  let array = fechaNace.split("T");
-  let fecha = array[0].slice(1, 11);
-=======
 const Sobre = ({ Autenticado }) => {
   //TOMO LA FECHA DEL AUTENTICADOR
   const fechaNace = Autenticado.fechaNacimiento;
 
   const array = fechaNace.split("T");
   const fecha = array[0].slice(1, 11);
->>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
   //console.log(fecha);
 
   let genero = "";
@@ -64,7 +51,7 @@ const Sobre = ({ Autenticado }) => {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Nombre:</strong> <span>{Autenticado.nombre}</span>
+                      <strong>Nombre:</strong> <span>{Autenticado.nombre.toUpperCase()}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
@@ -74,7 +61,7 @@ const Sobre = ({ Autenticado }) => {
                     <li>
                       <i className="bi bi-chevron-right"></i>
                       <strong>Direccion:</strong>{" "}
-                      <span>{Autenticado.direccion}</span>
+                      <span>{Autenticado.direccion.toUpperCase()}</span>
                     </li>
                   </ul>
                 </div>
@@ -87,16 +74,16 @@ const Sobre = ({ Autenticado }) => {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Apellido:</strong> <span>{Autenticado.apellido}</span>
+                      <strong>Apellido:</strong> <span>{Autenticado.apellido.toUpperCase()}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
                       <strong>Correo:</strong>
-                      <span>{Autenticado.email}</span>
+                      <span>{Autenticado.email.toUpperCase()}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Genero:</strong> <span>{genero}</span>
+                      <strong>Genero:</strong> <span>{genero.toUpperCase()}</span>
                     </li>
                   </ul>
                 </div>
