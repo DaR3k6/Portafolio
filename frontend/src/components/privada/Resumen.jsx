@@ -10,12 +10,9 @@ const Resumen = () => {
   //CAPUTO EL TOKEN
   let token = localStorage.getItem("token");
   //CREAMOS VARIABLE PARA TRAER TODOS LOS ESTUDIOS
-  const [usuario, setUsuario] = useState([]);
   const [estado, setEstado] = useState(null);
   const [estudios, setEstudios] = useState(null);
   const { form, cambiar } = HelperForm({});
-  const [estudioId, setEstudioId] = useState([]);
-  const [estadoId, setEstadoId] = useState([]);
 
   //TRAE TODOS LOS ESTUDIOS
   fetch(Global.url + "/estududios/historialUsuario", {
