@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import img from "../../assets/img/profile.jpg";
 import img1 from "../../assets/img/profileWoman.jpg";
 import img2 from "../../assets/img/profileOther.jpg";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 const Header = () => {
   //CAPTURO VAIABLES DEL USUARIO
   let nombreUser = localStorage.getItem("nombre");
   let generoUser = localStorage.getItem("genero");
+=======
+
+const Header = ({ Autenticado }) => {
+  let generoUser = Autenticado.genero;
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
 
   let imgGenero;
   if (generoUser == 1) {
     imgGenero = "Hombre";
-    console.log(imgGenero);
   } else if (generoUser == 2) {
     imgGenero = "Mujer";
-    console.log(imgGenero);
   } else if (generoUser == 3) {
     imgGenero = "Otro";
-    console.log(imgGenero);
   }
   //REDIRIGE
   const navigate = useNavigate();
@@ -36,6 +39,7 @@ const Header = () => {
       if (result.isConfirmed) {
         Swal.fire("Sesion cerrada!", "Exitosamente.", "success");
         navigate("/");
+        localStorage.clear();
       }
     });
   };
@@ -48,11 +52,7 @@ const Header = () => {
         <div className="d-flex flex-column">
           <div className="profile">
             {imgGenero == "Hombre" ? (
-              <img
-                src={img}
-                alt=""
-                className="img-fluid rounded-circle w-100"
-              />
+              <img src={img} alt="" className="img-fluid rounded w-50" />
             ) : (
               ""
             )}
@@ -60,7 +60,7 @@ const Header = () => {
               <img
                 src={img1}
                 alt=""
-                className="img-fluid rounded-circle w-100"
+                className="img-fluid rounded-circle w-50"
               />
             ) : (
               ""
@@ -69,14 +69,18 @@ const Header = () => {
               <img
                 src={img2}
                 alt=""
-                className="img-fluid rounded-circle w-90"
+                className="img-fluid rounded-circle w-50"
               />
             ) : (
               ""
             )}
 
             <h1 className="text-light">
+<<<<<<< HEAD
               <a href="index.html">{nombreUser}</a>
+=======
+              <a href="index.html">{Autenticado.nombre.toUpperCase()}</a>
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
             </h1>
             <div className="social-links mt-3 text-center">
               <a href="#" className="twitter">
@@ -131,7 +135,7 @@ const Header = () => {
               </li>
               <li>
                 <a href="#estudio" className="nav-link scrollto">
-                  <i class="bi bi-bar-chart-line"></i> <span>Estudios</span>
+                  <i className="bi bi-bar-chart-line"></i> <span>Estudios</span>
                 </a>
               </li>
               <li>
@@ -140,7 +144,7 @@ const Header = () => {
                   onClick={cerrarSesion}
                   style={{ cursor: "pointer" }}
                 >
-                  <i class="bi bi-box-arrow-right"></i>
+                  <i className="bi bi-box-arrow-right"></i>
                   <span>Cerrar Sesion</span>
                 </a>
               </li>

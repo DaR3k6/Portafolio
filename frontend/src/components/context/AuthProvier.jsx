@@ -23,23 +23,31 @@ export const AuthProvider = ({ children }) => {
     if (!token || !idUsuario) {
       return false;
     }
-    // si existen los transformamos en objeto javascript para manipular el ID del usuario
-    const userObj = JSON.parse(idUsuario);
-    console.log(userObj);
+    try {
+      // si existen los transformamos en objeto javascript para manipular el ID del usuario
+      const userObj = JSON.parse(idUsuario);
 
-    // Comprobacion del token del localstorage vs el del Backend
-    const request = await fetch(
-      Global.url + "/personal/informacion/" + userObj,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
+      // Comprobacion del token del localstorage vs el del Backend
+      const request = await fetch(
+        Global.url + "/personal/informacion/" + userObj,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+
+      if (!request.ok) {
+        console.error("Error en la autenticación:", response.statusText);
+        return;
       }
-    );
-    const data = await request.json();
-    setAutenticado(data.datos);
+      const data = await request.json();
+      setAutenticado(data.datos);
+    } catch (error) {
+      console.error("Error en la solicitud:", error.message);
+    }
   };
 
   return (

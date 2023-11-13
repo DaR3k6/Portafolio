@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+<<<<<<< HEAD
 const Sobre = () => {
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
   let generoUser = localStorage.getItem("genero");
@@ -10,16 +11,25 @@ const Sobre = () => {
   let apellido = localStorage.getItem("apellido");
   let array = fechaNace.split("T");
   let fecha = array[0].slice(1, 11);
+=======
+const Sobre = ({ Autenticado }) => {
+  //TOMO LA FECHA DEL AUTENTICADOR
+  const fechaNace = Autenticado.fechaNacimiento;
+
+  const array = fechaNace.split("T");
+  const fecha = array[0].slice(1, 11);
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
   //console.log(fecha);
 
   let genero = "";
-  if (generoUser == 1) {
+  if (Autenticado.genero == 1) {
     genero = "Hombre";
-  } else if (generoUser == 2) {
+  } else if (Autenticado.genero == 2) {
     genero = "Mujer";
-  } else if (generoUser == 3) {
+  } else if (Autenticado.genero == 3) {
     genero = "CatMan";
   }
+
   return (
     <>
       <section id="about" className="about">
@@ -54,15 +64,17 @@ const Sobre = () => {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Nombre:</strong> <span>{nombreUser}</span>
+                      <strong>Nombre:</strong> <span>{Autenticado.nombre}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Telefono:</strong> <span>{phone}</span>
+                      <strong>Telefono:</strong>{" "}
+                      <span>{Autenticado.telefono}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Direccion:</strong> <span>{direccion}</span>
+                      <strong>Direccion:</strong>{" "}
+                      <span>{Autenticado.direccion}</span>
                     </li>
                   </ul>
                 </div>
@@ -75,12 +87,12 @@ const Sobre = () => {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
-                      <strong>Apellido:</strong> <span>{apellido}</span>
+                      <strong>Apellido:</strong> <span>{Autenticado.apellido}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>
                       <strong>Correo:</strong>
-                      <span>{email}</span>
+                      <span>{Autenticado.email}</span>
                     </li>
                     <li>
                       <i className="bi bi-chevron-right"></i>

@@ -19,7 +19,11 @@ const Inicio = () => {
 
   return (
     <>
+<<<<<<< HEAD
       {/* <Header /> */}
+=======
+      <Header Autenticado={Autenticado} />
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
       <section
         id="hero"
         className="d-flex flex-column justify-content-center align-items-center"
@@ -27,7 +31,7 @@ const Inicio = () => {
         <div className="hero-container" data-aos="fade-in">
           <h1>{Autenticado.nombre}</h1>
           <p>
-            Soy Experto en Apis y MER.
+            Soy experto en APIS y MER.
             <span
               className="typed"
               data-typed-items="Designer, Developer, Freelancer, Photographer"
@@ -37,13 +41,20 @@ const Inicio = () => {
       </section>
 
       <main id="main">
+<<<<<<< HEAD
         {/* <Estudio />
         <Sobre />
         <Hechos />
+=======
+        <Estudio />
+        <Sobre Autenticado={Autenticado} />
+        <Hechos Autenticado={Autenticado} />
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
         <Habilidades />
-        <Resumen />
+        <Resumen Autenticado={Autenticado} />
         <Proyectos />
         <Servicies />
+<<<<<<< HEAD
         <Testimonios />
         <Contacto /> */}
       </main>
@@ -52,6 +63,14 @@ const Inicio = () => {
       {/* modales */}
 
       {/* edicion productos modal */}
+=======
+        <Testimonios Autenticado={Autenticado} />
+        <Contacto Autenticado={Autenticado} />
+      </main>
+      <footer id="footer">
+        <Footer />
+      </footer>
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
     </>
   );
 };

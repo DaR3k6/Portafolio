@@ -59,12 +59,7 @@ const Login = () => {
         //MENSAJE EXITOSO
         // localStorage.setItem("token", data.usuario.token);
         localStorage.setItem("email", JSON.stringify(data.usuario.email));
-        // localStorage.setItem("id", JSON.stringify(data.usuario.id));
-        localStorage.setItem("genero", data.usuario.genero);
-        localStorage.setItem("telefono", data.usuario.telefono);
-        localStorage.setItem("direccion", data.usuario.direccion);
-        localStorage.setItem("fechaNacimiento", data.usuario.fechaNacimiento);
-        localStorage.setItem("apellido", data.usuario.apellido);
+        localStorage.setItem("id", JSON.stringify(data.usuario.id));
 
         setGuardado("Guardado");
         Swal.fire({

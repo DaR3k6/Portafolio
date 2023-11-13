@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
-import HelperForm from "../../helpers/HelperForm";
 import ErrorStudy from "../error/ErrorStudy";
 import ModalEstudioEditar from "./modales/ModalEstudioEditar";
-const Resumen = () => {
-  //CAPTURO EL NOMBRE DEL USUARIO INGRESADO
-  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
-  //CAPUTO EL TOKEN
-  let token = localStorage.getItem("token");
-  //CREAMOS VARIABLE PARA TRAER TODOS LOS ESTUDIOS
+const Resumen = ({ Autenticado }) => {
+  //CAPUTRO EL TOKEN
+  const token = localStorage.getItem("token");
+
+  //CREAMOS ESTADOS PARA TRAER TODOS LOS ESTUDIOS
   const [estado, setEstado] = useState(null);
   const [estudios, setEstudios] = useState(null);
-  const { form, cambiar } = HelperForm({});
+
   const [modalEditar, setModalEditar] = useState(false);
-  const [estudioEditado, setEstudioEditado] = useState(null);
+  const [estudioEditando, setEstudioEditando] = useState(null);
 
   //MODAL PARA EDITAR
   const abrirModalEditar = (estudio) => {
@@ -25,10 +23,11 @@ const Resumen = () => {
       estudio.fechaFin &&
       estudio.notas
     ) {
-      setEstudioEditado(estudio);
+      setEstudioEditando(estudio);
       setModalEditar(true);
     } else {
-      console.error("El proyecto no tiene la información necesaria.");
+      console.error("El estudio no tiene la información necesaria.");
+      console.log("Propiedades del estudio:", estudio);
     }
   };
 
@@ -42,16 +41,14 @@ const Resumen = () => {
     fetch(Global.url + "/estududios/historialUsuario", {
       method: "GET",
       headers: {
+        "Content-Type": "application/json",
         Authorization: token,
       },
     })
       .then((response) => {
         return response.json();
-      }) // Manejo de la promesa
+      })
       .then((data) => {
-        //console.log("DATOS DEL FECHT" + data);
-        //console.log("LA DATA ES: " + data.status);
-        //console.log(estado);
         setEstudios(data.datos);
         setEstado(data.status);
       })
@@ -77,6 +74,7 @@ const Resumen = () => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
         })
           .then((response) => response.json())
@@ -87,7 +85,9 @@ const Resumen = () => {
             console.error("Error al obtener datos:", error);
           });
         Swal.fire("Estudio borrado!", "Exitosamente.", "success");
-        navigate("/Inicio");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     });
   };
@@ -127,24 +127,23 @@ const Resumen = () => {
                           <li hidden id="idBorrar">
                             {estudio._id}
                           </li>
+<<<<<<< HEAD
                           <li>{nombreUser}</li>
+=======
+                          <li>{Autenticado.nombre.toUpperCase()}</li>
+>>>>>>> f4cba80ea7115efaf4609464d43d63af9ef826c6
                           <li>{estudio.fechaFin.slice(0, 10)}</li>
                           <li>
-                            {estudio.notas == "1" ? (
-                              <li>Aprovado</li>
-                            ) : (
-                              <>
-                                <li>No Aprovado</li>
-                              </>
-                            )}
-                            {estudio.notas == "3" ? <li>En proceso</li> : <></>}
+                            {estudio.notas === 1 ? <li>Aprobado</li> : <></>}
+                            {estudio.notas === 2 ? <li>No aprobado</li> : <></>}
+                            {estudio.notas === 3 ? <li>En proceso</li> : <></>}
                           </li>
                         </ul>
                         <button
                           type="button"
                           className="btn btn-info m-2"
                           data-bs-toggle="modal"
-                          data-bs-target={`#modalEditarEstudio${estudio._id}`}
+                          data-bs-target={`#editarEstudio${estudio._id}`}
                           onClick={() => abrirModalEditar(estudio)}
                         >
                           <i className="bi bi-pencil-square"></i>
@@ -170,13 +169,14 @@ const Resumen = () => {
             )}
           </div>
         </div>
-        {modalEditar && estudioEditado && (
+        {modalEditar && estudioEditando && (
           <ModalEstudioEditar
-            tipo={estudioEditado.tipo}
-            descripcion={estudioEditado.detalle}
-            fecha={estudioEditado.fechaFin}
-            notas={estudioEditado.notas}
-            id={estudioEditado._id}
+            tipo={estudioEditando.tipo}
+            detalle={estudioEditando.detalle}
+            fecha={estudioEditando.fechaFin}
+            notas={estudioEditando.notas}
+            id={estudioEditando._id}
+            token={token}
             estudioEditado={agregarModalEditar}
           />
         )}

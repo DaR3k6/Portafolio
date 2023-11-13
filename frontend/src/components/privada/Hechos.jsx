@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 
-const Hechos = () => {
+const Hechos = ({ Autenticado }) => {
   return (
     <>
       <section id="facts" className="facts">
         <div className="container">
           <div className="section-title">
             <h2>Hechos Realizado</h2>
-            <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
-            </p>
+            <p>Con esto podras ver mis servicios y en todo lo que me destaco</p>
           </div>
 
           <div className="row no-gutters">
@@ -29,7 +24,7 @@ const Hechos = () => {
                   className="purecounter"
                 ></span>
                 <p>
-                  <strong>Clientes Felices</strong> consequuntur quae
+                  <strong>Clientes Felices</strong>
                 </p>
               </div>
             </div>
@@ -48,7 +43,7 @@ const Hechos = () => {
                   className="purecounter"
                 ></span>
                 <p>
-                  <strong>Projectos</strong> adipisci atque cum quia aut
+                  <strong>Projectos</strong>
                 </p>
               </div>
             </div>
@@ -67,7 +62,7 @@ const Hechos = () => {
                   className="purecounter"
                 ></span>
                 <p>
-                  <strong>Nuestro Soporte</strong> aut commodi quaerat
+                  <strong>Nuestro Soporte</strong>
                 </p>
               </div>
             </div>
@@ -86,7 +81,7 @@ const Hechos = () => {
                   className="purecounter"
                 ></span>
                 <p>
-                  <strong>Trabajadores Duros</strong> rerum asperiores dolor
+                  <strong>Trabajadores Duros</strong>
                 </p>
               </div>
             </div>

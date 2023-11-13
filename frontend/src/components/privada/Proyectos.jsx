@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import ModalAgregar from "../../components/privada/ModalAgregar.jsx";
-import ModalEditar from "../../components/privada/ModalEditar.jsx";
+import ModalAgregar from "./modales/ModalAgregar.jsx";
+import ModalEditar from "./modales/ModalEditar.jsx";
 import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
-
+import ErrorProyecto from "../../components/error/ErrorProyecto.jsx";
 const Proyectos = () => {
+  //CAPTURO EL TOKEN
+  const token = localStorage.getItem("token");
+
   const [mostrarModal, setMostrarModal] = useState(false);
-  const [modalEditar, setModalEditar] = useState(false);
   const [proyectos, setProyectos] = useState([]);
+  const [modalEditar, setModalEditar] = useState(false);
   const [proyectoEditando, setProyectoEditando] = useState(null);
 
   //MODAL PARA AGREGAR
@@ -20,7 +23,7 @@ const Proyectos = () => {
   };
 
   //MODAL PARA EDITAR
-  const abrirModalEditar = proyecto => {
+  const abrirModalEditar = (proyecto) => {
     if (proyecto && proyecto.nombre && proyecto.detalle && proyecto.link) {
       setProyectoEditando(proyecto);
       setModalEditar(true);
@@ -38,19 +41,20 @@ const Proyectos = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setProyectos(data.datos);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al cargar proyectos:", error);
       });
   };
 
   //CREACION ALERTA ELIMINAR PROYECTO
-  const eliminarProyecto = id => {
+  const eliminarProyecto = (id) => {
     Swal.fire({
       title: "Estas seguro?",
       text: "Quieres Eliminar este Proyecto?",
@@ -60,21 +64,22 @@ const Proyectos = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Eliminar!",
       showConfirmButton: true,
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         //TRAE TODOS LOS PROYECTO
         fetch(Global.url + `/proyecto/eliminar/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
         })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             // Cambia esta línea a setProyectos en lugar de setUsuario
             setProyectos(data.datos);
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Error al obtener datos:", error);
           });
         Swal.fire("Proyecto borrado!", "Exitosamente.", "success");
@@ -140,7 +145,10 @@ const Proyectos = () => {
                   >
                     <i className="bx bx-plus"></i>
                   </a>
-                  <a href="portfolio-details.html" title="More Details">
+                  <a
+                    href="https://img-9gag-fun.9cache.com/photo/a5XdgAq_700b.jpg"
+                    title="More Details"
+                  >
                     <i className="bx bx-link"></i>
                   </a>
                 </div>
@@ -148,7 +156,7 @@ const Proyectos = () => {
             </div>
 
             {proyectos && proyectos.length > 0 ? (
-              proyectos.map(proyecto => (
+              proyectos.map((proyecto) => (
                 <div
                   key={proyecto._id}
                   className="col-lg-4 col-md-6 portfolio-item filter-web"
@@ -182,11 +190,13 @@ const Proyectos = () => {
                 </div>
               ))
             ) : (
-              <p>No hay proyectos disponibles.</p>
+              <ErrorProyecto />
             )}
           </div>
         </div>
-        {mostrarModal && <ModalAgregar proyectoAgregado={agregarProyecto} />}
+        {mostrarModal && (
+          <ModalAgregar proyectoAgregado={agregarProyecto} token={token} />
+        )}
         {modalEditar && proyectoEditando && (
           <ModalEditar
             nombre={proyectoEditando.nombre}
@@ -194,6 +204,7 @@ const Proyectos = () => {
             link={proyectoEditando.link}
             id={proyectoEditando._id}
             proyectoEditado={agregarModalEditar}
+            token={token}
           />
         )}
       </section>

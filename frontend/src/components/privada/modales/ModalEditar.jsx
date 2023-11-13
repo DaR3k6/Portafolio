@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import HelperForm from "../../helpers/HelperForm";
-import { Global } from "../../helpers/Global";
+import HelperForm from "../../../helpers/HelperForm";
+import { Global } from "../../../helpers/Global";
 
-const ModalEditar = ({ nombre, descripcion, link, id }) => {
-
+const ModalEditar = ({ nombre, descripcion, link, id, token }) => {
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
 
@@ -25,12 +24,13 @@ const ModalEditar = ({ nombre, descripcion, link, id }) => {
   };
 
   const validarFormulario = () => {
-    if (!form.nombre || !form.detalle || !form.link) {
+    if (!form.nombre && !form.detalle && !form.link) {
       console.error("Datos de proyecto no disponibles.");
       mostrarCamposVaciosAlert();
       return false;
+    } else {
+      return true;
     }
-    return true;
   };
 
   const guardarProyecto = async e => {
@@ -41,14 +41,14 @@ const ModalEditar = ({ nombre, descripcion, link, id }) => {
     }
 
     let nuevoProyecto = form;
-    console.log(nuevoProyecto);
-    
+
     try {
       const request = await fetch(Global.url + `/proyecto/actualizar/${id}`, {
         method: "PUT",
         body: JSON.stringify(nuevoProyecto),
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
       });
       console.log(request);
