@@ -4,7 +4,9 @@ import img2 from "../../assets/img/fondo2.png";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
+
 const Estudio = () => {
+  const token = localStorage.getItem("token");
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
   //MENSAJE DE LOS CAMPOS VACIOS
@@ -49,6 +51,7 @@ const Estudio = () => {
         method: "POST",
         body: JSON.stringify(nuevoEstudio),
         headers: {
+          Authorization: token,
           "Content-Type": "application/json",
         },
       });

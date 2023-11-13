@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
 import HelperForm from "../../helpers/HelperForm";
+import ErrorStudy from "../error/ErrorStudy";
 
 const Resumen = () => {
-  //variable para capturar el estado de la consulta
-  //let contenido;
   //CAPTURO EL NOMBRE DEL USUARIO INGRESADO
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
-
+  //CAPUTO EL TOKEN
+  let token = localStorage.getItem("token");
   //CREAMOS VARIABLE PARA TRAER TODOS LOS ESTUDIOS
   const [usuario, setUsuario] = useState([]);
   const [estado, setEstado] = useState(null);
@@ -20,23 +20,26 @@ const Resumen = () => {
   //TRAE TODOS LOS ESTUDIOS
   fetch(Global.url + "/estududios/historialUsuario", {
     method: "GET",
+    headers: {
+      Authorization: token,
+    },
   })
-    .then(response => {
+    .then((response) => {
       return response.json();
     }) // Manejo de la promesa
-    .then(data => {
+    .then((data) => {
       //console.log("DATOS DEL FECHT" + data);
       //console.log("LA DATA ES: " + data.status);
       //console.log(estado);
       setEstudios(data.datos);
       setEstado(data.status);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error al obtener datos:", error);
     });
 
   //CREACION ALERTA ELIMINAR ESTUDIO
-  const eliminarEstudio = id => {
+  const eliminarEstudio = (id) => {
     Swal.fire({
       title: "Estas seguro?",
       text: "Quieres Eliminar este Estudio?",
@@ -45,7 +48,7 @@ const Resumen = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Eliminar!",
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         //TRAE TODOS LOS ESTUDIOS
         fetch(Global.url + `/estudios/eliminar/${id}`, {
@@ -54,11 +57,11 @@ const Resumen = () => {
             "Content-Type": "application/json",
           },
         })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setUsuario(data.datos);
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Error al obtener datos:", error);
           });
         Swal.fire("Estudio borrado!", "Exitosamente.", "success");
@@ -84,7 +87,7 @@ const Resumen = () => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, Editar!",
-      }).then(result => {
+      }).then((result) => {
         if (result.isConfirmed) {
           //TRAE TODOS LOS ESTUDIOS
           fetch(Global.url + `/estudios/actualizar/${id}`, {
@@ -94,11 +97,11 @@ const Resumen = () => {
               "Content-Type": "application/json",
             },
           })
-            .then(response => response.json())
-            .then(data => {
+            .then((response) => response.json())
+            .then((data) => {
               setUsuario(data.datos);
             })
-            .catch(error => {
+            .catch((error) => {
               console.error("Error al obtener datos:", error);
             });
           Swal.fire("Estudio borrado!", "Exitosamente.", "success");
@@ -114,19 +117,19 @@ const Resumen = () => {
   };
 
   //TRAER INFORMACION DE UN USUARIO
-  const traerEstudioID = id => {
+  const traerEstudioID = (id) => {
     console.log(id);
     fetch(Global.url + `/estudios/historial/${id}`, {
       method: "GET",
     })
-      .then(response => {
+      .then((response) => {
         return response.json();
       }) // Manejo de la promesa
-      .then(data => {
+      .then((data) => {
         setEstudioId(data.datos);
         setEstadoId(data.status);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al obtener datos:", error);
       });
   };
@@ -144,7 +147,7 @@ const Resumen = () => {
           </div>
           <div className="row">
             {estado == true ? (
-              estudios.map(estudio => {
+              estudios.map((estudio) => {
                 return (
                   <>
                     <div
@@ -202,7 +205,7 @@ const Resumen = () => {
               })
             ) : (
               <>
-                <h2>No hay Estudios Agregados</h2>
+                <ErrorStudy />
               </>
             )}
           </div>

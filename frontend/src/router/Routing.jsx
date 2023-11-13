@@ -22,7 +22,7 @@ const Routing = () => {
 
           {/*Rutas privadas*/}
           <Route>
-            <Route path="/protafolioBienvenida/" element={<LayoutPrivado />}>
+            <Route path="/Bienvenida/" element={<LayoutPrivado />}>
               <Route index element={<Inicio />} />
             </Route>
           </Route>

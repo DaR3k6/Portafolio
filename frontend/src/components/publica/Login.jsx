@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = message => {
+  const mostrarErrorAlert = (message) => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -37,7 +37,7 @@ const Login = () => {
     return true;
   };
 
-  const guardarLogin = async e => {
+  const guardarLogin = async (e) => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -85,7 +85,7 @@ const Login = () => {
   };
 
   if (navLink) {
-    return <Navigate to="/protafolioBienvenida" />;
+    return <Navigate to="/Bienvenida" />;
   }
 
   return (

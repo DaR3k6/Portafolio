@@ -19,9 +19,6 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     const idUsuario = localStorage.getItem("id");
 
-    console.log(token);
-    console.log(idUsuario);
-
     // validamos que los datos existan en el localstorage
     if (!token || !idUsuario) {
       return false;

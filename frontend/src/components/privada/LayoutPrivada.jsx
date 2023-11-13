@@ -11,7 +11,7 @@ const LayoutPrivado = () => {
       {Autenticado && Autenticado._id ? (
         <Outlet />
       ) : (
-        <Navigate to="/protafolioBienvenida" />
+        <Navigate to="/Bienvenida" />
       )}
     </>
   );

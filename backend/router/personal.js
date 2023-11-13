@@ -11,18 +11,27 @@ router.post("/personal/registrando", personalController.personalRegistrar);
 router.post("/personal/login", personalController.personalLogin);
 
 //ROUTER ACTUALIZAR USUARIO TOKEN!
-router.put("/personal/actualizar/:id?", personalController.personalActualizar);
+router.put(
+  "/personal/actualizar/:id",
+  auth,
+  personalController.personalActualizar
+);
 
 //ROUTER ELIMINO EL USUARIO TOKEN!
-router.delete("/personal/eliminar/:id?", personalController.eliminarUsuario);
+router.delete(
+  "/personal/eliminar/:id",
+  auth,
+  personalController.eliminarUsuario
+);
 
 //ROUTER OBTENGO LA INFORMACION PERSONAL TOKEN!
 router.get(
-  "/personal/informacion",
+  "/personal/informacion/:id",
+  auth,
   personalController.obtenerInformacionPersonal
 );
 
 //ROUTER LISTA TODOS LOS REGISTROS PERSONALES TOKEN!
-router.get("/personal", personalController.registrarRegistrosPersonales);
+router.get("/personal", auth, personalController.registrarRegistrosPersonales);
 
 module.exports = router;
