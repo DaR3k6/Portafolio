@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-const Contacto = () => {
-  let emailUser = JSON.parse(localStorage.getItem("email"));
-  let phoneUser = JSON.parse(localStorage.getItem("telefono"));
-  let adressUser = localStorage.getItem("direccion");
+const Contacto = ({ Autenticado }) => {
   return (
     <>
       <section id="contact" className="contact">
@@ -23,19 +20,19 @@ const Contacto = () => {
                 <div className="address">
                   <i className="bi bi-geo-alt"></i>
                   <h4>Ubicacion:</h4>
-                  <p>{adressUser}</p>
+                  <p>{Autenticado.direccion}</p>
                 </div>
 
                 <div className="email">
                   <i className="bi bi-envelope"></i>
                   <h4>Email:</h4>
-                  <p>{emailUser}</p>
+                  <p>{Autenticado.email}</p>
                 </div>
 
                 <div className="phone">
                   <i className="bi bi-phone"></i>
                   <h4>Llamanos:</h4>
-                  <p>{phoneUser}</p>
+                  <p>{Autenticado.telefono}</p>
                 </div>
 
                 <iframe

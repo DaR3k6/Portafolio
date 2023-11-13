@@ -6,18 +6,15 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ Autenticado }) => {
-  let generoUser = localStorage.getItem("genero");
+  let generoUser = Autenticado.genero;
 
   let imgGenero;
   if (generoUser == 1) {
     imgGenero = "Hombre";
-    console.log(imgGenero);
   } else if (generoUser == 2) {
     imgGenero = "Mujer";
-    console.log(imgGenero);
   } else if (generoUser == 3) {
     imgGenero = "Otro";
-    console.log(imgGenero);
   }
   //REDIRIGE
   const navigate = useNavigate();
@@ -31,10 +28,11 @@ const Header = ({ Autenticado }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Salir!",
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Sesion cerrada!", "Exitosamente.", "success");
         navigate("/");
+        localStorage.clear();
       }
     });
   };
@@ -47,11 +45,7 @@ const Header = ({ Autenticado }) => {
         <div className="d-flex flex-column">
           <div className="profile">
             {imgGenero == "Hombre" ? (
-              <img
-                src={img}
-                alt=""
-                className="img-fluid rounded-circle w-100"
-              />
+              <img src={img} alt="" className="img-fluid rounded w-50" />
             ) : (
               ""
             )}
@@ -59,7 +53,7 @@ const Header = ({ Autenticado }) => {
               <img
                 src={img1}
                 alt=""
-                className="img-fluid rounded-circle w-100"
+                className="img-fluid rounded-circle w-50"
               />
             ) : (
               ""
@@ -68,7 +62,7 @@ const Header = ({ Autenticado }) => {
               <img
                 src={img2}
                 alt=""
-                className="img-fluid rounded-circle w-90"
+                className="img-fluid rounded-circle w-50"
               />
             ) : (
               ""

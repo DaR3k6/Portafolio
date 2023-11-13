@@ -23,7 +23,7 @@ const Proyectos = () => {
   };
 
   //MODAL PARA EDITAR
-  const abrirModalEditar = proyecto => {
+  const abrirModalEditar = (proyecto) => {
     if (proyecto && proyecto.nombre && proyecto.detalle && proyecto.link) {
       setProyectoEditando(proyecto);
       setModalEditar(true);
@@ -44,17 +44,17 @@ const Proyectos = () => {
         Authorization: token,
       },
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setProyectos(data.datos);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al cargar proyectos:", error);
       });
   };
 
   //CREACION ALERTA ELIMINAR PROYECTO
-  const eliminarProyecto = id => {
+  const eliminarProyecto = (id) => {
     Swal.fire({
       title: "Estas seguro?",
       text: "Quieres Eliminar este Proyecto?",
@@ -64,7 +64,7 @@ const Proyectos = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Eliminar!",
       showConfirmButton: true,
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         //TRAE TODOS LOS PROYECTO
         fetch(Global.url + `/proyecto/eliminar/${id}`, {
@@ -74,12 +74,12 @@ const Proyectos = () => {
             Authorization: token,
           },
         })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             // Cambia esta línea a setProyectos en lugar de setUsuario
             setProyectos(data.datos);
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Error al obtener datos:", error);
           });
         Swal.fire("Proyecto borrado!", "Exitosamente.", "success");
@@ -145,7 +145,10 @@ const Proyectos = () => {
                   >
                     <i className="bx bx-plus"></i>
                   </a>
-                  <a href="portfolio-details.html" title="More Details">
+                  <a
+                    href="https://img-9gag-fun.9cache.com/photo/a5XdgAq_700b.jpg"
+                    title="More Details"
+                  >
                     <i className="bx bx-link"></i>
                   </a>
                 </div>
@@ -153,7 +156,7 @@ const Proyectos = () => {
             </div>
 
             {proyectos && proyectos.length > 0 ? (
-              proyectos.map(proyecto => (
+              proyectos.map((proyecto) => (
                 <div
                   key={proyecto._id}
                   className="col-lg-4 col-md-6 portfolio-item filter-web"

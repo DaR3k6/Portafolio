@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import HelperForm from "../../../helpers/HelperForm";
 import { Global } from "../../../helpers/Global";
 
-const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
+const ModalEstudioEditar = ({ tipo, detalle, fecha, notas, id, token }) => {
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
   const mostrarCamposVaciosAlert = () => {
@@ -14,7 +14,7 @@ const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
     });
   };
 
-  const mostrarErrorAlert = message => {
+  const mostrarErrorAlert = (message) => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -23,7 +23,7 @@ const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
   };
 
   const validarFormulario = () => {
-    const { detalle, fecha, notas } = form;
+    const { tipo, detalle, fecha, notas } = form;
 
     if (!detalle && !fecha && !notas) {
       console.error("Datos de Estudio no disponibles.");
@@ -33,7 +33,7 @@ const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
     return true;
   };
 
-  const guardarProyecto = async e => {
+  const guardarProyecto = async (e) => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -98,12 +98,22 @@ const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
           <form onSubmit={guardarProyecto}>
             <div className="modal-body">
               <div className="mb-3">
-                <label className="form-label">Estudios Superiores:</label>
+                <label> Tipo : </label>
                 <input
                   type="text"
-                  className="form-control"
-                  placeholder="Detalle"
-                  name="detalle"
+                  class="form-control"
+                  placeholder="Username"
+                  name="tipo"
+                  onChange={cambiar}
+                  defaultValue={tipo}
+                />
+              </div>
+              <div className="mb-3">
+                <label> Detalle : </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
                   onChange={cambiar}
                   defaultValue={detalle}
                 />
@@ -122,14 +132,18 @@ const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
               <div className="mb-3">
                 <label className="form-label">Notas de estudio:</label>
                 <div className="input-group">
-                  <span className="input-group-text">Estudios Superiores</span>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <select
+                    class="form-select form-select-lg mb-3"
+                    aria-label="Large select example"
                     name="notas"
                     onChange={cambiar}
                     defaultValue={notas}
-                  />
+                  >
+                    <option value="0">Selecciona</option>
+                    <option value="1">Aprobado</option>
+                    <option value="2">No Aprovado</option>
+                    <option value="3">En Proceso</option>
+                  </select>
                 </div>
                 <div className="form-text">Sitio de tu estudio.</div>
               </div>

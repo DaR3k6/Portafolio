@@ -39,13 +39,13 @@ const Inicio = () => {
       <main id="main">
         <Estudio />
         <Sobre Autenticado={Autenticado} />
-        <Hechos />
+        <Hechos Autenticado={Autenticado} />
         <Habilidades />
         <Resumen Autenticado={Autenticado} />
         <Proyectos />
         <Servicies />
-        <Testimonios />
-        <Contacto />
+        <Testimonios Autenticado={Autenticado} />
+        <Contacto Autenticado={Autenticado} />
       </main>
       <footer id="footer">
         <Footer />

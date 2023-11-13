@@ -15,8 +15,14 @@ const Resumen = ({ Autenticado }) => {
   const [estudioEditando, setEstudioEditando] = useState(null);
 
   //MODAL PARA EDITAR
-  const abrirModalEditar = estudio => {
-    if (estudio && estudio.detalle && estudio.fechaFin && estudio.notas) {
+  const abrirModalEditar = (estudio) => {
+    if (
+      estudio &&
+      estudio.tipo &&
+      estudio.detalle &&
+      estudio.fechaFin &&
+      estudio.notas
+    ) {
       setEstudioEditando(estudio);
       setModalEditar(true);
     } else {
@@ -39,20 +45,20 @@ const Resumen = ({ Autenticado }) => {
         Authorization: token,
       },
     })
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setEstudios(data.datos);
         setEstado(data.status);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al obtener datos:", error);
       });
   };
 
   //CREACION ALERTA ELIMINAR ESTUDIO
-  const eliminarEstudio = id => {
+  const eliminarEstudio = (id) => {
     Swal.fire({
       title: "Estas seguro?",
       text: "Quieres Eliminar este Estudio?",
@@ -61,7 +67,7 @@ const Resumen = ({ Autenticado }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Eliminar!",
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         //TRAE TODOS LOS ESTUDIOS
         fetch(Global.url + `/estudios/eliminar/${id}`, {
@@ -71,17 +77,17 @@ const Resumen = ({ Autenticado }) => {
             Authorization: token,
           },
         })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             setUsuario(data.datos);
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Error al obtener datos:", error);
           });
         Swal.fire("Estudio borrado!", "Exitosamente.", "success");
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1000);
       }
     });
   };
@@ -103,7 +109,7 @@ const Resumen = ({ Autenticado }) => {
           </div>
           <div className="row">
             {estado == true ? (
-              estudios.map(estudio => {
+              estudios.map((estudio) => {
                 return (
                   <>
                     <div
@@ -124,14 +130,9 @@ const Resumen = ({ Autenticado }) => {
                           <li>{Autenticado.nombre.toUpperCase()}</li>
                           <li>{estudio.fechaFin.slice(0, 10)}</li>
                           <li>
-                            {estudio.notas == "1" ? (
-                              <li>Aprovado</li>
-                            ) : (
-                              <>
-                                <li>No Aprovado</li>
-                              </>
-                            )}
-                            {estudio.notas == "3" ? <li>En proceso</li> : <></>}
+                            {estudio.notas === 1 ? <li>Aprobado</li> : <></>}
+                            {estudio.notas === 2 ? <li>No aprobado</li> : <></>}
+                            {estudio.notas === 3 ? <li>En proceso</li> : <></>}
                           </li>
                         </ul>
                         <button
