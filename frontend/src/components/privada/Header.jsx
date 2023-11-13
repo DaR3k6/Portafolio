@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
   //CAPTURO VAIABLES DEL USUARIO
-  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
+  let nombreUser = localStorage.getItem("nombre");
   let generoUser = localStorage.getItem("genero");
 
   let imgGenero;
@@ -76,7 +76,7 @@ const Header = () => {
             )}
 
             <h1 className="text-light">
-              <a href="index.html">{nombreUser.toUpperCase()}</a>
+              <a href="index.html">{nombreUser}</a>
             </h1>
             <div className="social-links mt-3 text-center">
               <a href="#" className="twitter">

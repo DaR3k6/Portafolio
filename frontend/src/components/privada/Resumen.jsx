@@ -127,7 +127,7 @@ const Resumen = () => {
                           <li hidden id="idBorrar">
                             {estudio._id}
                           </li>
-                          <li>{nombreUser.toUpperCase()}</li>
+                          <li>{nombreUser}</li>
                           <li>{estudio.fechaFin.slice(0, 10)}</li>
                           <li>
                             {estudio.notas == "1" ? (

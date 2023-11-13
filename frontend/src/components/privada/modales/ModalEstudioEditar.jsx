@@ -7,6 +7,8 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
 
+  if (notas == 1) {
+  }
   const mostrarCamposVaciosAlert = () => {
     Swal.fire({
       icon: "error",
@@ -114,15 +116,26 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
                     placeholder="Leave a comment here"
                     name="detalle"
                     onChange={cambiar}
-                    defaultValue={fecha}
+                    defaultValue={descripcion}
                   ></textarea>
-                  <label>Detalles del Proyecto</label>
+                  <label>Detalles del Estudio</label>
                 </div>
               </div>
+
+              <div className="input-group mb-3">
+                <input
+                  type="date"
+                  name="fecha"
+                  id=""
+                  onChange={cambiar}
+                  defaultValue={fecha}
+                />
+                <label htmlFor="">Fecha de estudio</label>
+              </div>
+
               <div className="input-group mb-3">
                 <label className="form-label">Ingresa tu URL</label>
                 <div className="input-group">
-                  <span className="input-group-text">https://</span>
                   <input
                     type="text"
                     className="form-control"

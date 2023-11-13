@@ -4,8 +4,8 @@ const Sobre = () => {
   let nombreUser = JSON.parse(localStorage.getItem("nombre"));
   let generoUser = localStorage.getItem("genero");
   let fechaNace = localStorage.getItem("fechaNacimiento");
-  let email = JSON.parse(localStorage.getItem("email"));
-  let phone = JSON.parse(localStorage.getItem("telefono"));
+  let email = localStorage.getItem("email");
+  let phone = localStorage.getItem("telefono");
   let direccion = localStorage.getItem("direccion");
   let apellido = localStorage.getItem("apellido");
   let array = fechaNace.split("T");

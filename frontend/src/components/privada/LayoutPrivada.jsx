@@ -4,7 +4,6 @@ import UseAuth from "../../helpers/UseAuth";
 
 const LayoutPrivado = () => {
   const { Autenticado } = UseAuth();
-  console.log("Autenticado en LayoutPrivado:", Autenticado);
 
   return (
     <>

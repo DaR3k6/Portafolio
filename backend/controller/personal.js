@@ -420,7 +420,7 @@ const obtenerInformacionPersonal = async (req, res) => {
     return res.status(200).json({
       resultado: "Obtención exitosa",
       status: true,
-      datos: consulta.toJSON(),
+      datos: consulta,
     });
   } catch (error) {
     return res.status(500).json({

@@ -20,7 +20,7 @@ const Register = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = message => {
+  const mostrarErrorAlert = (message) => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -37,7 +37,7 @@ const Register = () => {
     return true;
   };
 
-  const guardarRegistro = async e => {
+  const guardarRegistro = async (e) => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -175,9 +175,7 @@ const Register = () => {
                           name="genero"
                           onChange={cambiar}
                         >
-                          <option value="1" disabled>
-                            Seleccione
-                          </option>
+                          <option>Seleccione</option>
                           <option value="1">Hombre</option>
                           <option value="2">Mujer</option>
                           <option value="3">Otro</option>
@@ -201,7 +199,7 @@ const Register = () => {
                           type="checkbox"
                           value={enviarEmail}
                           id="form2Example3cg"
-                          onChange={e => {
+                          onChange={(e) => {
                             setEmail(e.target.value);
                           }}
                         />

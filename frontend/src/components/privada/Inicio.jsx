@@ -19,13 +19,13 @@ const Inicio = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <section
         id="hero"
         className="d-flex flex-column justify-content-center align-items-center"
       >
         <div className="hero-container" data-aos="fade-in">
-          <h1>{Autenticado.nombre.toUpperCase()}</h1>
+          <h1>{Autenticado.nombre}</h1>
           <p>
             Soy Experto en Apis y MER.
             <span
@@ -37,7 +37,7 @@ const Inicio = () => {
       </section>
 
       <main id="main">
-        <Estudio />
+        {/* <Estudio />
         <Sobre />
         <Hechos />
         <Habilidades />
@@ -45,11 +45,9 @@ const Inicio = () => {
         <Proyectos />
         <Servicies />
         <Testimonios />
-        <Contacto />
+        <Contacto /> */}
       </main>
-      <footer id="footer">
-        <Footer />
-      </footer>
+      <footer id="footer">{/* <Footer /> */}</footer>
 
       {/* modales */}
 
