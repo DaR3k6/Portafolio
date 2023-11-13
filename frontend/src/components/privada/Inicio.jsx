@@ -19,7 +19,7 @@ const Inicio = () => {
 
   return (
     <>
-      <Header />
+      <Header Autenticado={Autenticado} />
       <section
         id="hero"
         className="d-flex flex-column justify-content-center align-items-center"
@@ -27,7 +27,7 @@ const Inicio = () => {
         <div className="hero-container" data-aos="fade-in">
           <h1>{Autenticado.nombre.toUpperCase()}</h1>
           <p>
-            Soy Experto en Apis y MER.
+            Soy experto en APIS y MER.
             <span
               className="typed"
               data-typed-items="Designer, Developer, Freelancer, Photographer"
@@ -38,10 +38,10 @@ const Inicio = () => {
 
       <main id="main">
         <Estudio />
-        <Sobre />
+        <Sobre Autenticado={Autenticado} />
         <Hechos />
         <Habilidades />
-        <Resumen />
+        <Resumen Autenticado={Autenticado} />
         <Proyectos />
         <Servicies />
         <Testimonios />
@@ -50,10 +50,6 @@ const Inicio = () => {
       <footer id="footer">
         <Footer />
       </footer>
-
-      {/* modales */}
-
-      {/* edicion productos modal */}
     </>
   );
 };

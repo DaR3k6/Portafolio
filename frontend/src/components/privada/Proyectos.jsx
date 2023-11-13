@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import ModalAgregar from "../../components/privada/ModalAgregar.jsx";
-import ModalEditar from "../../components/privada/ModalEditar.jsx";
+import ModalAgregar from "./modales/ModalAgregar.jsx";
+import ModalEditar from "./modales/ModalEditar.jsx";
 import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
-
+import ErrorProyecto from "../../components/error/ErrorProyecto.jsx";
 const Proyectos = () => {
+  //CAPTURO EL TOKEN
+  const token = localStorage.getItem("token");
+
   const [mostrarModal, setMostrarModal] = useState(false);
-  const [modalEditar, setModalEditar] = useState(false);
   const [proyectos, setProyectos] = useState([]);
+  const [modalEditar, setModalEditar] = useState(false);
   const [proyectoEditando, setProyectoEditando] = useState(null);
 
   //MODAL PARA AGREGAR
@@ -38,6 +41,7 @@ const Proyectos = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
     })
       .then(response => response.json())
@@ -67,6 +71,7 @@ const Proyectos = () => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
         })
           .then(response => response.json())
@@ -182,11 +187,13 @@ const Proyectos = () => {
                 </div>
               ))
             ) : (
-              <p>No hay proyectos disponibles.</p>
+              <ErrorProyecto />
             )}
           </div>
         </div>
-        {mostrarModal && <ModalAgregar proyectoAgregado={agregarProyecto} />}
+        {mostrarModal && (
+          <ModalAgregar proyectoAgregado={agregarProyecto} token={token} />
+        )}
         {modalEditar && proyectoEditando && (
           <ModalEditar
             nombre={proyectoEditando.nombre}
@@ -194,6 +201,7 @@ const Proyectos = () => {
             link={proyectoEditando.link}
             id={proyectoEditando._id}
             proyectoEditado={agregarModalEditar}
+            token={token}
           />
         )}
       </section>

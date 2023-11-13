@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import img from "../../assets/img/profile.jpg";
 import img1 from "../../assets/img/profileWoman.jpg";
 import img2 from "../../assets/img/profileOther.jpg";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-const Header = () => {
-  //CAPTURO VAIABLES DEL USUARIO
-  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
+
+const Header = ({ Autenticado }) => {
   let generoUser = localStorage.getItem("genero");
 
   let imgGenero;
@@ -32,7 +31,7 @@ const Header = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Salir!",
-    }).then((result) => {
+    }).then(result => {
       if (result.isConfirmed) {
         Swal.fire("Sesion cerrada!", "Exitosamente.", "success");
         navigate("/");
@@ -76,7 +75,7 @@ const Header = () => {
             )}
 
             <h1 className="text-light">
-              <a href="index.html">{nombreUser.toUpperCase()}</a>
+              <a href="index.html">{Autenticado.nombre.toUpperCase()}</a>
             </h1>
             <div className="social-links mt-3 text-center">
               <a href="#" className="twitter">
@@ -131,7 +130,7 @@ const Header = () => {
               </li>
               <li>
                 <a href="#estudio" className="nav-link scrollto">
-                  <i class="bi bi-bar-chart-line"></i> <span>Estudios</span>
+                  <i className="bi bi-bar-chart-line"></i> <span>Estudios</span>
                 </a>
               </li>
               <li>
@@ -140,7 +139,7 @@ const Header = () => {
                   onClick={cerrarSesion}
                   style={{ cursor: "pointer" }}
                 >
-                  <i class="bi bi-box-arrow-right"></i>
+                  <i className="bi bi-box-arrow-right"></i>
                   <span>Cerrar Sesion</span>
                 </a>
               </li>

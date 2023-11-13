@@ -1,34 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Global } from "../../helpers/Global";
 import Swal from "sweetalert2";
-import HelperForm from "../../helpers/HelperForm";
 import ErrorStudy from "../error/ErrorStudy";
 import ModalEstudioEditar from "./modales/ModalEstudioEditar";
-const Resumen = () => {
-  //CAPTURO EL NOMBRE DEL USUARIO INGRESADO
-  let nombreUser = JSON.parse(localStorage.getItem("nombre"));
-  //CAPUTO EL TOKEN
-  let token = localStorage.getItem("token");
-  //CREAMOS VARIABLE PARA TRAER TODOS LOS ESTUDIOS
+const Resumen = ({ Autenticado }) => {
+  //CAPUTRO EL TOKEN
+  const token = localStorage.getItem("token");
+
+  //CREAMOS ESTADOS PARA TRAER TODOS LOS ESTUDIOS
   const [estado, setEstado] = useState(null);
   const [estudios, setEstudios] = useState(null);
-  const { form, cambiar } = HelperForm({});
+
   const [modalEditar, setModalEditar] = useState(false);
-  const [estudioEditado, setEstudioEditado] = useState(null);
+  const [estudioEditando, setEstudioEditando] = useState(null);
 
   //MODAL PARA EDITAR
-  const abrirModalEditar = (estudio) => {
-    if (
-      estudio &&
-      estudio.tipo &&
-      estudio.detalle &&
-      estudio.fechaFin &&
-      estudio.notas
-    ) {
-      setEstudioEditado(estudio);
+  const abrirModalEditar = estudio => {
+    if (estudio && estudio.detalle && estudio.fechaFin && estudio.notas) {
+      setEstudioEditando(estudio);
       setModalEditar(true);
     } else {
-      console.error("El proyecto no tiene la información necesaria.");
+      console.error("El estudio no tiene la información necesaria.");
+      console.log("Propiedades del estudio:", estudio);
     }
   };
 
@@ -42,26 +35,24 @@ const Resumen = () => {
     fetch(Global.url + "/estududios/historialUsuario", {
       method: "GET",
       headers: {
+        "Content-Type": "application/json",
         Authorization: token,
       },
     })
-      .then((response) => {
+      .then(response => {
         return response.json();
-      }) // Manejo de la promesa
-      .then((data) => {
-        //console.log("DATOS DEL FECHT" + data);
-        //console.log("LA DATA ES: " + data.status);
-        //console.log(estado);
+      })
+      .then(data => {
         setEstudios(data.datos);
         setEstado(data.status);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error al obtener datos:", error);
       });
   };
 
   //CREACION ALERTA ELIMINAR ESTUDIO
-  const eliminarEstudio = (id) => {
+  const eliminarEstudio = id => {
     Swal.fire({
       title: "Estas seguro?",
       text: "Quieres Eliminar este Estudio?",
@@ -70,24 +61,27 @@ const Resumen = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, Eliminar!",
-    }).then((result) => {
+    }).then(result => {
       if (result.isConfirmed) {
         //TRAE TODOS LOS ESTUDIOS
         fetch(Global.url + `/estudios/eliminar/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
         })
-          .then((response) => response.json())
-          .then((data) => {
+          .then(response => response.json())
+          .then(data => {
             setUsuario(data.datos);
           })
-          .catch((error) => {
+          .catch(error => {
             console.error("Error al obtener datos:", error);
           });
         Swal.fire("Estudio borrado!", "Exitosamente.", "success");
-        navigate("/Inicio");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     });
   };
@@ -109,7 +103,7 @@ const Resumen = () => {
           </div>
           <div className="row">
             {estado == true ? (
-              estudios.map((estudio) => {
+              estudios.map(estudio => {
                 return (
                   <>
                     <div
@@ -127,7 +121,7 @@ const Resumen = () => {
                           <li hidden id="idBorrar">
                             {estudio._id}
                           </li>
-                          <li>{nombreUser.toUpperCase()}</li>
+                          <li>{Autenticado.nombre.toUpperCase()}</li>
                           <li>{estudio.fechaFin.slice(0, 10)}</li>
                           <li>
                             {estudio.notas == "1" ? (
@@ -144,7 +138,7 @@ const Resumen = () => {
                           type="button"
                           className="btn btn-info m-2"
                           data-bs-toggle="modal"
-                          data-bs-target={`#modalEditarEstudio${estudio._id}`}
+                          data-bs-target={`#editarEstudio${estudio._id}`}
                           onClick={() => abrirModalEditar(estudio)}
                         >
                           <i className="bi bi-pencil-square"></i>
@@ -170,13 +164,14 @@ const Resumen = () => {
             )}
           </div>
         </div>
-        {modalEditar && estudioEditado && (
+        {modalEditar && estudioEditando && (
           <ModalEstudioEditar
-            tipo={estudioEditado.tipo}
-            descripcion={estudioEditado.detalle}
-            fecha={estudioEditado.fechaFin}
-            notas={estudioEditado.notas}
-            id={estudioEditado._id}
+            tipo={estudioEditando.tipo}
+            detalle={estudioEditando.detalle}
+            fecha={estudioEditando.fechaFin}
+            notas={estudioEditando.notas}
+            id={estudioEditando._id}
+            token={token}
             estudioEditado={agregarModalEditar}
           />
         )}

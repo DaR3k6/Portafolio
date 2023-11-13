@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   //MENSAJE DE ERROR
-  const mostrarErrorAlert = (message) => {
+  const mostrarErrorAlert = message => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -37,7 +37,7 @@ const Login = () => {
     return true;
   };
 
-  const guardarLogin = async (e) => {
+  const guardarLogin = async e => {
     e.preventDefault();
 
     if (!validarFormulario()) {
@@ -60,7 +60,7 @@ const Login = () => {
         localStorage.setItem("token", data.usuario.token);
         localStorage.setItem("email", JSON.stringify(data.usuario.email));
         localStorage.setItem("id", JSON.stringify(data.usuario.id));
-
+        localStorage.setItem("genero", JSON.stringify(data.usuario.genero));
         setGuardado("Guardado");
         Swal.fire({
           icon: "success",

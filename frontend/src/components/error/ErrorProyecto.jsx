@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrorStudy = () => {
+const ErrorProyecto = () => {
   return (
     <>
       <div
@@ -14,7 +14,7 @@ const ErrorStudy = () => {
           padding: "1rem",
           maxWidth: "300px",
           alignItems: "center",
-          left: "40%",
+          left: "10%",
           right: "20%",
         }}
       >
@@ -23,7 +23,7 @@ const ErrorStudy = () => {
           style={{ fontSize: "3.5rem", marginRight: "1rem" }}
         ></i>
         <div className="text-center">
-          <strong>¡Advertencia!</strong> No hay estudios agregados.
+          <strong>¡Advertencia!</strong> No hay proyecto agregados.
         </div>
         <button
           type="button"
@@ -37,4 +37,4 @@ const ErrorStudy = () => {
   );
 };
 
-export default ErrorStudy;
+export default ErrorProyecto;

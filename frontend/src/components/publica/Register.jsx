@@ -175,9 +175,7 @@ const Register = () => {
                           name="genero"
                           onChange={cambiar}
                         >
-                          <option value="1" disabled>
-                            Seleccione
-                          </option>
+                          <option>Seleccione</option>
                           <option value="1">Hombre</option>
                           <option value="2">Mujer</option>
                           <option value="3">Otro</option>

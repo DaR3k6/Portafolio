@@ -3,7 +3,7 @@ import UseAuth from "../../helpers/UseAuth";
 
 const LayoutPublico = () => {
   const { Autenticado } = UseAuth();
-
+  console.log("Layout Publico", Autenticado);
   return <>{!Autenticado.id ? <Outlet /> : <Navigate to="/Bienvenida" />}</>;
 };
 

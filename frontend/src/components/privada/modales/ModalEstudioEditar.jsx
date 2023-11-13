@@ -3,10 +3,9 @@ import Swal from "sweetalert2";
 import HelperForm from "../../../helpers/HelperForm";
 import { Global } from "../../../helpers/Global";
 
-const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
+const ModalEstudioEditar = ({ detalle, fecha, notas, id, token }) => {
   const { form, cambiar } = HelperForm({});
   const [, setGuardado] = useState("");
-
   const mostrarCamposVaciosAlert = () => {
     Swal.fire({
       icon: "error",
@@ -15,7 +14,7 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
     });
   };
 
-  const mostrarErrorAlert = (message) => {
+  const mostrarErrorAlert = message => {
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -24,7 +23,9 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
   };
 
   const validarFormulario = () => {
-    if (!form.nombre || !form.detalle || !form.link) {
+    const { detalle, fecha, notas } = form;
+
+    if (!detalle && !fecha && !notas) {
       console.error("Datos de Estudio no disponibles.");
       mostrarCamposVaciosAlert();
       return false;
@@ -32,27 +33,27 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
     return true;
   };
 
-  const guardarProyecto = async (e) => {
+  const guardarProyecto = async e => {
     e.preventDefault();
 
     if (!validarFormulario()) {
       return;
     }
 
-    let nuevoProyecto = form;
-    console.log(nuevoProyecto);
+    let nuevoEstudio = form;
 
     try {
-      const request = await fetch(Global.url + `/estudios/actualizar/${id}`, {
+      const response = await fetch(Global.url + `/estudios/actualizar/${id}`, {
         method: "PUT",
-        body: JSON.stringify(nuevoProyecto),
+        body: JSON.stringify(nuevoEstudio),
         headers: {
-          Authorization: token,
           "Content-Type": "application/json",
+          Authorization: token,
         },
       });
-      console.log(request);
-      const data = await request.json();
+
+      const data = await response.json();
+
       if (data.status === true) {
         setGuardado("Guardado");
         Swal.fire({
@@ -70,7 +71,7 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
       }
     } catch (error) {
       mostrarErrorAlert(
-        "Algo salió mal. Por faavor, inténtelo de nuevo más tarde."
+        "Algo salió mal. Por favor, inténtelo de nuevo más tarde."
       );
     }
   };
@@ -78,7 +79,7 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
   return (
     <div
       className="modal fade"
-      id={`modalEditarEstudio${id}`}
+      id={`editarEstudio${id}`}
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -96,42 +97,41 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
           </div>
           <form onSubmit={guardarProyecto}>
             <div className="modal-body">
-              <div className="input-group mb-3">
-                <span className="input-group-text">📚</span>
+              <div className="mb-3">
+                <label className="form-label">Estudios Superiores:</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nombre Proyecto"
-                  name="nombre"
+                  placeholder="Detalle"
+                  name="detalle"
                   onChange={cambiar}
-                  defaultValue={tipo}
+                  defaultValue={detalle}
                 />
               </div>
-              <div className="input-group mb-3">
-                <div className="form-floating mb-3">
-                  <textarea
-                    className="form-control"
-                    placeholder="Leave a comment here"
-                    name="detalle"
-                    onChange={cambiar}
-                    defaultValue={fecha}
-                  ></textarea>
-                  <label>Detalles del Proyecto</label>
-                </div>
+              <div className="mb-3">
+                <label className="form-label">Fecha fin del estudio:</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  placeholder="Leave a comment here"
+                  name="fecha"
+                  onChange={cambiar}
+                  defaultValue={fecha}
+                ></input>
               </div>
-              <div className="input-group mb-3">
-                <label className="form-label">Ingresa tu URL</label>
+              <div className="mb-3">
+                <label className="form-label">Notas de estudio:</label>
                 <div className="input-group">
-                  <span className="input-group-text">https://</span>
+                  <span className="input-group-text">Estudios Superiores</span>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
-                    name="link"
+                    name="notas"
                     onChange={cambiar}
                     defaultValue={notas}
                   />
                 </div>
-                <div className="form-text">Sitio de tu proyecto.</div>
+                <div className="form-text">Sitio de tu estudio.</div>
               </div>
             </div>
             <div className="modal-footer">
@@ -140,10 +140,10 @@ const ModalEstudioEditar = ({ tipo, descripcion, fecha, notas, id }) => {
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                Cerrar
               </button>
               <button type="submit" className="btn btn-primary">
-                Save changes
+                Guardar
               </button>
             </div>
           </form>
